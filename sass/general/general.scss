@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Monserrat", sans-serif;
+}
+
+main {
+
+  @mixin media-query-reset {
+    @media screen and (max-width:580px) {
+      @content;
+    }
+  }
+
+
+  h1 {
+    font-size: 30px;
+    margin: 2px 10px;
+    color: $h1Color;
+
+    @include media-query-reset() {
+      font-size: 24px;
+
+    }
+
+  }
+
+  h2 {
+    font-size: 28px;
+    margin: 2px 10px;
+    color: $h2Color;
+
+    @include media-query-reset() {
+      font-size: 22px;
+
+    }
+
+  }
+
+  h3 {
+    font-size: 24px;
+    margin: 2px 10px;
+    text-align: center;
+    color: $h3Color;
+
+    @include media-query-reset() {
+      font-size: 20px;
+
+    }
+
+  }
+
+  h4 {
+    margin-top: 10px;
+    font-size: 22;
+    text-align: center;
+    margin: 2px 10px;
+    color: $h4Color;
+
+    @include media-query-reset() {
+      font-size: 18px;
+    }
+
+  }
+
+  p {
+    font-size: 18px;
+    text-align: justify;
+    margin: 20px 20px;
+    color: $secundaryColor;
+
+    @include media-query-reset() {
+      font-size: 16px;
+    }
+  }
+
+}

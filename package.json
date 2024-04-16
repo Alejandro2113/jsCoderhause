@@ -1,0 +1,22 @@
+{
+  "name": "jscoderhause",
+  "version": "1.0.0",
+  "description": "Primer Entrega",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alejandro2113/jsCoderhause.git"
+  },
+  "keywords": [
+    "Js"
+  ],
+  "author": "Ing. Moises Gonzalez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alejandro2113/jsCoderhause/issues"
+  },
+  "homepage": "https://github.com/Alejandro2113/jsCoderhause#readme"
+}
