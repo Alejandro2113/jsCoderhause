@@ -78,6 +78,11 @@ header .menuHeader {
   flex-direction: row;
   font-size: 30px;
 }
+@media screen and (max-width: 780px) {
+  header .menuHeader {
+    font-size: 24px;
+  }
+}
 header .menuHeader li {
   padding-left: 20px;
 }
@@ -148,10 +153,12 @@ main .appPupusas {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  width: 500px;
+  width: 50dvw;
   height: max-content;
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 12dvw;
+  margin-right: 12dvw;
   background-color: rgb(255, 149, 0);
   padding: 20px;
 }
@@ -161,9 +168,10 @@ main .appPupusas li {
 main .appPupusas li:hover {
   padding: 10px 20px;
   transform: scale(1.2, 1.2);
-  transition: all 0.5s ease;
+  transition: all 0.75s ease;
   color: rgb(255, 228, 0);
   font-weight: 400;
+  font-size: 30px;
 }
 main .appPupusas li a {
   text-decoration: none;
@@ -176,7 +184,9 @@ main .appPupusas li a {
 main .imgPupusas {
   display: flex;
   justify-content: center;
-  border-radius: 15px;
+  width: 65dvh;
+  height: 75dvw;
+  border-image: 25px;
 }
 
 /*# sourceMappingURL=style.css.map */

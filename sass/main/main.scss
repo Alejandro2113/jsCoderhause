@@ -15,6 +15,7 @@ main {
         width: 100%;
         flex-wrap: wrap;
 
+
         .app {
             display: flex;
             width: 300px;
@@ -69,10 +70,12 @@ main {
         justify-content: center;
         align-items: center;
         border-radius: 5px;
-        width: 500px;
+        width: 50dvw;
         height: max-content;
         margin-top: 20px;
         margin-bottom: 20px;
+        margin-left: 12dvw;
+        margin-right: 12dvw;
         background-color: $h1Color;
         padding: 20px;
 
@@ -82,9 +85,10 @@ main {
             &:hover {
                 padding: 10px 20px;
                 transform: scale(1.2, 1.2);
-                transition: all 0.5s ease;
+                transition: all 0.75s ease;
                 color: $h3Color;
                 font-weight: 400;
+                font-size: 30px;
             }
 
             a {
@@ -101,6 +105,10 @@ main {
     .imgPupusas {
         display: flex;
         justify-content: center;
-        border-radius: 15px;
+        width: 65dvh;
+        height: 75dvw;
+        border-image: 25px;
     }
+
+
 }
