@@ -4,6 +4,29 @@ Comision CODERHAUSE javascrit (No "JAVA" sino me funean) #54005.
 Tutoría a cargo de Marcelo Furlong.
 */
 
+/* DEJO CLAROS MIS OBJETIVOS PARA TRAZAR UNA META Y DEFINIR PUNTOS A TOCAR EN ESTA SEGUNDA
+PREENTREGA
+
+*OBJETIVOS DE SEGUNDA ENTREGA
+
+//OBJETIVO PRIMARIO//
+- DESPUES DE ORDENAR PEDIR LOS DATOS DEL CLEINTE COMO LO SON:
+    * ID CLIENTE
+    * FECHA DE INGRESO A BASE
+    * NOMBRE.
+    * DIRECCION.
+    * TELEFONO.
+    * ALERGIAS ESPECIALES (PARA PREVENIR RIESGOS POR ALERJIAS).
+
+ESTOS GUARDARLOS EN UN OBJETO Y PERMITIR INTERACTUAR CON EL EN EL FUTURO PARA HACER 
+MODIFICACIONES A PETICION DEL CLIENTE.
+
+//OBJETIVO SECUNDARIO (BONUS)//
+
+INTEGRAR ESTOS RESULTADOS USANDO DOM EN apps.html
+
+*/
+
 alert(
   "Programa para ordenar pupusas \n Aqui podes pedir por persona\n estas listo para iniciar?"
 );
@@ -32,14 +55,16 @@ function recarga() {
 //Depurado usando la funcion ya establecida
 if (personas <= 0 || isNaN(personas) || personas >= 15) {
   recarga();
+} else if (personas>=16){
+  alert ("Tu pedido es muy grande, porfavor contactanos al telefono para asegurar tu orden");
 }
 
 let pupusas = [
-  revueltas= 0,
-  frijol= 0,
-  campesina= 0,
-  chicharon= 0,
-  vegetariana= 0,
+  (revueltas = 0),
+  (frijol = 0),
+  (campesina = 0),
+  (chicharon = 0),
+  (vegetariana = 0),
 ];
 
 //Aqui la funcion que te deja seleccionar y lo guarde
@@ -77,7 +102,7 @@ function pupas() {
     recarga();
   }
 
-  let pupas = [ revueltas, frijol, campesina, chicharon, vegetariana ];
+  let pupas = [revueltas, frijol, campesina, chicharon, vegetariana];
 
   //sumas use logica de sumas acumuladas (se que use objetos pero queria un orden en una base)
   /*pupusas.revueltas = pupas.revueltas + pupusas.revueltas;
@@ -85,23 +110,15 @@ function pupas() {
   pupusas.campesina = pupas.campesina + pupusas.campesina;
   pupusas.chicharon = pupas.chicharon + pupusas.chicharon;
   pupusas.vegetariana = pupas.vegetariana + pupusas.vegetariana;*/
-  
 
   //LO MODIFIQUE CON UN ARRAY ARRIBA ESTA EL CODIGO ANTERIOR.
   for (n = 0; n < 5; n++) {
-    
-    pupusas[n]=pupas[n]+pupusas[n];
-  
+    pupusas[n] = pupas[n] + pupusas[n];
   }
   console.log(pupas);
   console.log(pupusas);
-  
-  
 
-return pupas
-
-
-
+  return pupas;
 }
 
 alert(
@@ -112,20 +129,18 @@ alert(
 for (i = 1; i <= personas; i++) {
   alert("¿Que pupusas quiere la persona " + i + "?.");
   pupas();
-    //Pirmer valor para la suma
+  //Pirmer valor para la suma
 }
 
-/* resumen del pedido (No encontre una manera mejor de mostrarlo en un alet, supongo que eso biene)
-mas adelante en la cursada "JSON.stringify(pupusas) esto me lo saque de la manga con IA"*/
-
-alert("El resumen de tu pedido es:\n" + `${pupusas[0]} - Pupusas Revueltas\n`+
-`${pupusas[1]} - Pupusas La queso\n`+`${pupusas[2]} - Pupusas Campesina\n`+
-`${pupusas[3]} - Pupusas La caperusita\n`+`${pupusas[4]} - Pupusas La vegetariana\n`);
+alert(
+  "El resumen de tu pedido es:\n" +
+    `${pupusas[0]} - Pupusas Revueltas\n` +
+    `${pupusas[1]} - Pupusas La queso\n` +
+    `${pupusas[2]} - Pupusas Campesina\n` +
+    `${pupusas[3]} - Pupusas La caperusita\n` +
+    `${pupusas[4]} - Pupusas La vegetariana\n`
+);
 
 alert("Tu orden ya esta en la plancha, espero lo disfrutes =)");
 
-/*Nota al margen, quieres algo mas divertido?, si es asi porfavor revisa esto:
-https://alejandro2113.github.io/civilapps/
-Lo hice con amor y funciona al 100%, se puede revisar con el esquema de la primer imagen
-, pero no supe como poder mostar un ciclo. y senti que complique mucho las cosas =@
-*/
+//-----------------------------------------------------------------------------------------//
