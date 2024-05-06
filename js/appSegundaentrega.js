@@ -55,8 +55,10 @@ function recarga() {
 //Depurado usando la funcion ya establecida
 if (personas <= 0 || isNaN(personas) || personas >= 15) {
   recarga();
-} else if (personas>=16){
-  alert ("Tu pedido es muy grande, porfavor contactanos al telefono para asegurar tu orden");
+} else if (personas >= 16) {
+  alert(
+    "Tu pedido es muy grande, porfavor contactanos al telefono para asegurar tu orden"
+  );
 }
 
 let pupusas = [
@@ -141,6 +143,35 @@ alert(
     `${pupusas[4]} - Pupusas La vegetariana\n`
 );
 
-alert("Tu orden ya esta en la plancha, espero lo disfrutes =)");
+//alert("Tu orden ya esta en la plancha, espero lo disfrutes =)");
 
 //-----------------------------------------------------------------------------------------//
+
+alert(
+  "Tu orden ya esta en la plancha, Porfavor termina de llenar\n los datos para el envio."
+);
+
+let cliente = confirm("Eres cliente registrado, o deseas registrarte?","Si ya lo estoy","NO LO ESTOY");
+
+class MiCliente {
+  constructor(telefono, nombre, edad, direccion) {
+    this.telefono = telefono;
+    this.nombre = nombre;
+    this.edad = edad;
+    this.direccion = direccion;
+  }
+}
+
+if (cliente) {
+
+  let nombre = prompt("Escribe un nombre y un apellido");
+  let edad = prompt("Que edad tienes?");
+  let telefono = prompt("Escribe tu numero de telefono para contactarnos");
+  let direccion = prompt("Escribe tu direccion de envio");
+
+  const clienteNuevo = new MiCliente(telefono, nombre, edad, direccion);
+
+  console.log("cliente nuevo", clienteNuevo);
+} else {
+  let telefono = prompt("Escribe tu numero de telefono para contactarnos");
+}
