@@ -10,7 +10,7 @@ PREENTREGA
 *OBJETIVOS DE SEGUNDA ENTREGA
 
 //OBJETIVO PRIMARIO//
-- DESPUES DE ORDENAR PEDIR LOS DATOS DEL CLEINTE COMO LO SON:
+- DESPUES DE ORDENAR PEDIR LOS DATOS DEL CLIENTE COMO LO SON:
     * ID CLIENTE
     * FECHA DE INGRESO A BASE
     * NOMBRE.
@@ -20,10 +20,6 @@ PREENTREGA
 
 ESTOS GUARDARLOS EN UN OBJETO Y PERMITIR INTERACTUAR CON EL EN EL FUTURO PARA HACER 
 MODIFICACIONES A PETICION DEL CLIENTE.
-
-//OBJETIVO SECUNDARIO (BONUS)//
-
-INTEGRAR ESTOS RESULTADOS USANDO DOM EN apps.html
 
 */
 
@@ -61,13 +57,7 @@ if (personas <= 0 || isNaN(personas) || personas >= 15) {
   );
 }
 
-let pupusas = [
-  (revueltas = 0),
-  (frijol = 0),
-  (campesina = 0),
-  (chicharon = 0),
-  (vegetariana = 0),
-];
+let pupusas = [0,0,0,0,0];
 
 //Aqui la funcion que te deja seleccionar y lo guarde
 function pupas() {
@@ -151,27 +141,164 @@ alert(
   "Tu orden ya esta en la plancha, Porfavor termina de llenar\n los datos para el envio."
 );
 
-let cliente = confirm("Eres cliente registrado, o deseas registrarte?","Si ya lo estoy","NO LO ESTOY");
-
 class MiCliente {
-  constructor(telefono, nombre, edad, direccion) {
+  constructor(idCliente, telefono, nombre, edad, direccion,alergias) {
+    this.idCliente = idCliente;
     this.telefono = telefono;
     this.nombre = nombre;
     this.edad = edad;
     this.direccion = direccion;
+    this.alergias = alergias;
   }
 }
 
-if (cliente) {
+// Introcuciendo base de clientes
 
+const baseClientes = [
+  {
+    idCliente: 1,
+    nombre: "EDUARDO GONZALEZ",
+    telefono: 61616565,
+    edad: 21,
+    direccion: "avenida siempre viva 120",
+    alergias: "pimienta",
+  },
+  {
+    idCliente: 2,
+    nombre: "jULIO MEDINA",
+    telefono: 61616566,
+    edad: 22,
+    direccion: "avenida siempre viva 121",
+    alergias: "loroco",
+  },
+  {
+    idCliente: 3,
+    nombre: "JOSUE GONZALEZ",
+    telefono: 61616060,
+    edad: 23,
+    direccion: "avenida siempre viva 122",
+  },
+  {
+    idCliente: 4,
+    nombre: "HOMERO SIMPSON",
+    telefono: 70707878,
+    edad: 34,
+    direccion: "avenida siempre viva 123",
+    alergias: "pimienta",
+  },
+  {
+    idCliente: 5,
+    nombre: "GABRIELA GONZALEZ",
+    telefono: 61616000,
+    edad: 27,
+    direccion: "avenida siempre viva 124",
+  },
+  {
+    idCliente: 6,
+    nombre: "ALE GALVEZ",
+    telefono: 78707870,
+    edad: 30,
+    direccion: "avenida siempre viva 125",
+    alergias: "colorante rojo",
+  },
+];
+
+console.log("Base clientes= ", baseClientes);
+console.log("Numero de clientes= ", baseClientes.length);
+
+function crearCliente() {
   let nombre = prompt("Escribe un nombre y un apellido");
-  let edad = prompt("Que edad tienes?");
-  let telefono = prompt("Escribe tu numero de telefono para contactarnos");
+  let edad = parseInt(prompt("Que edad tienes?"));
+  let telefono = parseInt(
+    prompt("Escribe tu numero de telefono para contactarnos")
+  );
   let direccion = prompt("Escribe tu direccion de envio");
+  let alergias = prompt("Eres alergico en alguna sustancia?");
 
-  const clienteNuevo = new MiCliente(telefono, nombre, edad, direccion);
+  const clienteNuevo = new MiCliente(
+    baseClientes.length + 1,
+    telefono,
+    nombre.toUpperCase(),
+    edad,
+    direccion.toLowerCase(),
+    alergias.toLowerCase(),
+  );
 
   console.log("cliente nuevo", clienteNuevo);
+  console.log("id de cliente ", clienteNuevo.idCliente);
+
+
+
+  let envio = confirm(
+    `Tu nombre es: ${clienteNuevo.nombre} \n` +
+      `Tu direccion es: ${clienteNuevo.direccion}\n` +
+      `Deseas que te enviemos a esta dirección?`
+  );
+  
+  if (envio) {
+    baseClientes.push(clienteNuevo);
+
+    console.log("Base clientes= ", baseClientes);
+    console.log("Numero de clientes= ", baseClientes.length);
+    alert("Tu orden esta en la plancha");
+  } else {
+    alert("Ingresa de nuevo tus datos de envio");
+    crearCliente();
+  }
+
+}
+
+function buscarClientes() {
+  let telefonoBuscado = parseInt(
+    prompt("Escribe tu numero de telefono para buscarte en la base de clientes")
+  );
+  console.log("Tu numero de telefono es: ", telefonoBuscado);
+  let buscarCliente = baseClientes.find(
+    (item) => item.telefono === telefonoBuscado
+  );
+
+  console.log(buscarCliente)
+
+  let clienteBuscado = prompt(
+    "Escribe el nombre que registraste"
+  ).toUpperCase();
+
+  if (buscarCliente != undefined && buscarCliente.nombre === clienteBuscado) {
+    console.log("Tu nombre es ", buscarCliente.nombre);
+    console.log("Tus datos son: ", buscarCliente);
+
+    let envio = confirm(
+      `Tu nombre es: ${buscarCliente.nombre} \n` +
+        `Tu direccion es: ${buscarCliente.direccion}\n` +
+        `Deseas que te enviemos a esta dirección?`
+    );
+    if (envio) {
+      alert("Tu orden esta en la plancha");
+    } else {
+      alert("Ingresa de nuevo tus datos de envio");
+      crearCliente();
+    }
+  } else {
+    let nuevabusqueda = confirm("Los datos no coinciden, deseas registrarte?");
+    if (nuevabusqueda) {
+      crearCliente();
+    } else {
+      alert(
+        "Necesitamos tus datos para el pedido, por favor ingresa de nuevo tus datos"
+      );
+      crearCliente;
+    }
+  }
+}
+
+let cliente = confirm(
+  "Eres cliente registrado, o deseas registrarte?",
+  "Si ya lo estoy",
+  "NO LO ESTOY"
+);
+
+if (cliente) {
+  crearCliente();
 } else {
-  let telefono = prompt("Escribe tu numero de telefono para contactarnos");
+  buscarClientes();
 }
