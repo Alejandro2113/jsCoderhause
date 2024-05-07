@@ -138,7 +138,7 @@ alert(
 //-----------------------------------------------------------------------------------------//
 
 alert(
-  "Tu orden ya esta en la plancha, Porfavor termina de llenar\n los datos para el envio."
+  "Tu orden ya esta en cocina, Porfavor termina de llenar\n los datos para el envio."
 );
 
 class MiCliente {
@@ -236,8 +236,8 @@ function crearCliente() {
   );
   
   if (envio) {
+    //LO REGISTRO EN LA BASE DE DATOS
     baseClientes.push(clienteNuevo);
-
     console.log("Base clientes= ", baseClientes);
     console.log("Numero de clientes= ", baseClientes.length);
     alert("Tu orden esta en la plancha");
@@ -292,7 +292,7 @@ function buscarClientes() {
 }
 
 let cliente = confirm(
-  "Eres cliente registrado, o deseas registrarte?",
+  "Eres cliente registrado? (pulsa aceptar)\n, o deseas registrarte? (pulsa cancelar)",
   "Si ya lo estoy",
   "NO LO ESTOY"
 );
