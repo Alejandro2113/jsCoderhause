@@ -57,7 +57,7 @@ if (personas <= 0 || isNaN(personas) || personas >= 15) {
   );
 }
 
-let pupusas = [0,0,0,0,0];
+let pupusas = [0, 0, 0, 0, 0];
 
 //Aqui la funcion que te deja seleccionar y lo guarde
 function pupas() {
@@ -110,7 +110,7 @@ function pupas() {
   console.log(pupas);
   console.log(pupusas);
 
-  return pupas;
+  //return pupas;
 }
 
 alert(
@@ -142,7 +142,7 @@ alert(
 );
 
 class MiCliente {
-  constructor(idCliente, telefono, nombre, edad, direccion,alergias) {
+  constructor(idCliente, telefono, nombre, edad, direccion, alergias) {
     this.idCliente = idCliente;
     this.telefono = telefono;
     this.nombre = nombre;
@@ -195,7 +195,7 @@ const baseClientes = [
   },
   {
     idCliente: 6,
-    nombre: "ALE GALVEZ",
+    nombre: "ALE",
     telefono: 78707870,
     edad: 30,
     direccion: "avenida siempre viva 125",
@@ -221,23 +221,25 @@ function crearCliente() {
     nombre.toUpperCase(),
     edad,
     direccion.toLowerCase(),
-    alergias.toLowerCase(),
+    alergias.toLowerCase()
   );
 
   console.log("cliente nuevo", clienteNuevo);
   console.log("id de cliente ", clienteNuevo.idCliente);
-
-
 
   let envio = confirm(
     `Tu nombre es: ${clienteNuevo.nombre} \n` +
       `Tu direccion es: ${clienteNuevo.direccion}\n` +
       `Deseas que te enviemos a esta dirección?`
   );
-  
+
   if (envio) {
     //LO REGISTRO EN LA BASE DE DATOS
     baseClientes.push(clienteNuevo);
+
+    clienteFinal = clienteNuevo.nombre;
+    direccionFinal = clienteNuevo.direccion;
+
     console.log("Base clientes= ", baseClientes);
     console.log("Numero de clientes= ", baseClientes.length);
     alert("Tu orden esta en la plancha");
@@ -245,7 +247,6 @@ function crearCliente() {
     alert("Ingresa de nuevo tus datos de envio");
     crearCliente();
   }
-
 }
 
 function buscarClientes() {
@@ -257,7 +258,7 @@ function buscarClientes() {
     (item) => item.telefono === telefonoBuscado
   );
 
-  console.log(buscarCliente)
+  console.log(buscarCliente);
 
   let clienteBuscado = prompt(
     "Escribe el nombre que registraste"
@@ -266,6 +267,9 @@ function buscarClientes() {
   if (buscarCliente != undefined && buscarCliente.nombre === clienteBuscado) {
     console.log("Tu nombre es ", buscarCliente.nombre);
     console.log("Tus datos son: ", buscarCliente);
+
+    clienteFinal = buscarCliente.nombre;
+    direccionFinal = buscarCliente.direccion;
 
     let envio = confirm(
       `Tu nombre es: ${buscarCliente.nombre} \n` +
@@ -302,3 +306,19 @@ if (cliente) {
 } else {
   buscarClientes();
 }
+
+//DOM---- PARA MOSTRAR EL PEDIDO Y LOS DATOS DE ENVIO.
+//id="pedidos"
+
+const recibofinal = document.getElementById("pedidos");
+
+const nombreRecibo = document.createElement("h3");
+nombreRecibo.innerText = "DETALLES DE TU ORDEN";
+const nombreCliente = document.createElement("p");
+nombreCliente.innerText = `Orde a nombre de: ${clienteFinal}`;
+const direccionRecibo = document.createElement("p");
+direccionRecibo.innerText = `Tu direccion es: ${direccionFinal}`;
+
+recibofinal.appendChild(nombreRecibo);
+recibofinal.appendChild(nombreCliente);
+recibofinal.appendChild(direccionRecibo);
