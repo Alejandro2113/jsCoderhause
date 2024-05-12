@@ -199,8 +199,8 @@ main .appPupusas li a {
 main .imgPupusas {
   display: flex;
   justify-content: center;
-  width: 65dvh;
-  height: 75dvw;
+  width: 65dvw;
+  height: 65dvh;
   border-image: 25px;
 }
 
