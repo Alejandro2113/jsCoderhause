@@ -30,6 +30,25 @@ main {
 
 
         }
+
+        .recibo {
+            
+            border-radius: 12px;
+            background-color: darkcyan;
+            margin: 20px;
+            padding: 20px;
+
+            h3{
+                margin-bottom: 20px;
+            }
+
+            p {
+                text-align: center;
+                font-weight: 600;
+                margin: 1px;
+                padding: 1px;
+            }
+        }
     }
 
 

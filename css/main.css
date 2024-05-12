@@ -100,7 +100,7 @@ header .menuHeader li:last-of-type {
 }
 
 main {
-  background-color: darkred;
+  background-color: blue;
 }
 main .elm {
   display: flex;
@@ -121,19 +121,11 @@ main .elm .app {
   z-index: 3;
 }
 main .elm .recibo {
-  border-radius: 12px;
-  background-color: darkcyan;
-  margin: 20px;
-  padding: 20px;
-}
-main .elm .recibo h3 {
-  margin-bottom: 20px;
+  background-color: aquamarine;
 }
 main .elm .recibo p {
-  text-align: center;
-  font-weight: 600;
-  margin: 1px;
-  padding: 1px;
+  margin: 0;
+  padding: 0;
 }
 main .cont {
   flex-direction: column;
@@ -204,4 +196,4 @@ main .imgPupusas {
   border-image: 25px;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=main.css.map */

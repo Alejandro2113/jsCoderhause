@@ -307,18 +307,51 @@ if (cliente) {
   buscarClientes();
 }
 
+let TotalPupas = pupusas.reduce((a, b) => a + b, 0);
+let PrecioPupusas = [
+  pupusas[0] * 1.0,
+  pupusas[1] * 1.25,
+  pupusas[2] * 1.15,
+  pupusas[3] * 1.2,
+  pupusas[4] * 0.85,
+];
+let TotalPrecio = PrecioPupusas.reduce((a, b) => a + b, 0);
+
 //DOM---- PARA MOSTRAR EL PEDIDO Y LOS DATOS DE ENVIO.
 //id="pedidos"
 
 const recibofinal = document.getElementById("pedidos");
-
 const nombreRecibo = document.createElement("h3");
 nombreRecibo.innerText = "DETALLES DE TU ORDEN";
+const horaPedido = document.createElement("p");
+horaPedido.innerText = `Hora del pedido:\n${Date()}`;
 const nombreCliente = document.createElement("p");
 nombreCliente.innerText = `Orde a nombre de: ${clienteFinal}`;
 const direccionRecibo = document.createElement("p");
 direccionRecibo.innerText = `Tu direccion es: ${direccionFinal}`;
+const resumenPupusas = document.createElement("p");
+resumenPupusas.innerText =
+  "El resumen de tu pedido es:\n\n" +
+  `${pupusas[0]} - Pupusas Revueltas\t - (1.00)\t - $${(
+    pupusas[0] * 1.0
+  ).toFixed(2)}\n` +
+  `${pupusas[1]} - Pupusas La queso\t - (1.25)\t - $${(
+    pupusas[1] * 1.25
+  ).toFixed(2)}\n` +
+  `${pupusas[2]} - Pupusas Campesina\t - (1.15)\t - $${(
+    pupusas[2] * 1.15
+  ).toFixed(2)}\n` +
+  `${pupusas[3]} - Pupusas La caperusita\t - (1.20)\t - $${(
+    pupusas[3] * 1.2
+  ).toFixed(2)}\n` +
+  `${pupusas[4]} - Pupusas La vegetariana\t - (0.85)\t - $${(
+    pupusas[4] * 0.85
+  ).toFixed(2)}\n 
+    En total son ${TotalPupas} Pupusas
+    Cantidad a pagar = $ ${TotalPrecio.toFixed(2)}`;
 
 recibofinal.appendChild(nombreRecibo);
+recibofinal.appendChild(horaPedido);
 recibofinal.appendChild(nombreCliente);
 recibofinal.appendChild(direccionRecibo);
+recibofinal.appendChild(resumenPupusas);
