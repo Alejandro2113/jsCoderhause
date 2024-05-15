@@ -42,27 +42,69 @@
         </div>
 
         <div class="elm">
-            <div class="cont">
+            <div class="cont2">
                 <h4>¿Que variedades ofrecemos?</h4>
-                <p>
-                    Actualmente el restaurante te ofrece 5 opciones de exquisitas pupusas
-                    y puedes tomar tu pedido al acceder en el siguiente botón.
-                    <br><br>
 
-                    - Revueltas (Queso, frijoles, chicharon, hongos).<br>
+                <div class="datosPedido" id="datosPedido">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>TIPO DE PUPUSA</th>
+                                <th>CUANTAS QUIERES?</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Revueltas (Queso, frijoles, chicharon, hongos)</td>
+                                <td><form class="cantidad" id="revueltas"><input type="number" min="0" max="50"></form></td>
+                            </tr>
+                            <tr>
+                                <td>La frijol y queso (Queso, Frijol y loroco)</td>
+                                <td><form class="cantidad" id="frijol"><input type="number" min="0" max="50"></form></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>Campesina (Queso, frijol, Hongos)</td>
+                                <td><form class="cantidad" id="campesina"><input type="number" min="0" max="50"></form></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>Campesina (Queso, y Chicharon)</td>
+                                <td><form class="cantidad" id="chicharon"><input type="number" min="0" max="50"></form></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>La vegetariana (Espinaca, hongos, mora, ajo)</td>
+                                <td><form class="cantidad" id="vegetariana"><input type="number" min="0" max="50"></form></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button>Enviar</button>
+                    
+                   
+                   <div class="envio" id="envio">
 
-                    - La queso (Queso y loroco).<br>
-
-                    - Campesina (Queso, frijol).<br>
-
-                    - La caperusita (Chicharron, queso). <br>
-
-                    - La vegetariana (Espinaca, hongos, mora, ajo). <br>
-                </p>
-
-                <div class="recibo" id="pedidos">
-
+                    <form>
+                        <label for="nombre">Nombre:</label><br>
+                        <input type="text" id="nombre" name="nombre"><br>
+                        <label for="telefono">Teléfono:</label><br>
+                        <input type="tel" id="telefono" name="telefono"><br>
+                        <label for="direccion">Dirección:</label><br>
+                        <input type="text" id="direccion" name="direccion"><br>
+                        <label for="alergia">Alergia:</label><br>
+                        <input type="text" id="alergia" name="alergia"><br>
+                        <input type="submit" value="Enviar">
+                    </form>
+                    
+                   </div>
+                   
+                   <div class="recibo" id="pedidos">
+   
+                   </div>
                 </div>
+                
 
 
             </div>
@@ -77,8 +119,9 @@
 
 
 
+
     </main>
-    <script src="../js/appSegundaentrega.js"></script>
+    <script src="../js/appTercerEntrega.js"></script>
     <footer>
 
     </footer>
