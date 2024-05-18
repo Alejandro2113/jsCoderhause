@@ -14,7 +14,7 @@ PREENTREGA
 - CREAR EVENTOS PARA QUITAR LOS PROMP.
 - MEJORAR LA BASE DE USUARIOS.
 - AGREGAR BOTONES PARA INGRESAR CLIENTE, O PARA BUSCAR CLIENTE Y SUS DATOS, (BUSCAR POR NUMERO DE TELEFONO Y NOMBRE).
-- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE.
+- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE..
 
 */
 
@@ -46,35 +46,34 @@ let pupas = [0, 0, 0, 0, 0];
 
 let revueltas = document.getElementById("rev");
 revueltas.addEventListener("input", () => console.log(revueltas.value));
-let queso = document.getElementById('fri');
+let queso = document.getElementById("fri");
 queso.addEventListener("input", () => console.log(queso.value));
-let campesina = document.getElementById('camp');
+let campesina = document.getElementById("camp");
 campesina.addEventListener("input", () => console.log(campesina.value));
-let chicharon = document.getElementById('chich');
+let chicharon = document.getElementById("chich");
 chicharon.addEventListener("input", () => console.log(chicharon.value));
-let vegetariana = document.getElementById('vege');
+let vegetariana = document.getElementById("vege");
 vegetariana.addEventListener("input", () => console.log(vegetariana.value));
-
 
 let botonPupusas = document.getElementById("pedidoPupusas");
 botonPupusas.onclick = () => {
-    pupas[0]=parseInt(revueltas.value);
-    pupas[1]=parseInt(queso.value);
-    pupas[2]=parseInt(campesina.value);
-    pupas[3]=parseInt(chicharon.value);
-    pupas[4]=parseInt(vegetariana.value);
-    let TotalPupas = pupas.reduce((a, b) => a + b, 0);
-    let PrecioPupas = [
+  pupas[0] = parseInt(revueltas.value);
+  pupas[1] = parseInt(queso.value);
+  pupas[2] = parseInt(campesina.value);
+  pupas[3] = parseInt(chicharon.value);
+  pupas[4] = parseInt(vegetariana.value);
+  let TotalPupas = pupas.reduce((a, b) => a + b, 0);
+  let PrecioPupas = [
     pupas[0] * 1.0,
     pupas[1] * 1.25,
     pupas[2] * 1.15,
     pupas[3] * 1.2,
     pupas[4] * 0.85,
-    ];
-    let TotalPrecio = PrecioPupas.reduce((a, b) => a + b, 0);
-    
-    console.log(TotalPupas);
-    console.log(TotalPrecio);
+  ];
+  let TotalPrecio = PrecioPupas.reduce((a, b) => a + b, 0);
+
+  console.log(TotalPupas);
+  console.log(TotalPrecio);
 };
 
 //DEPURANDO VALORES PARA NO OBTENER NEGATIVOS
