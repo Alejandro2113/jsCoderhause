@@ -14,8 +14,12 @@ PREENTREGA
 - CREAR EVENTOS PARA QUITAR LOS PROMP.
 - MEJORAR LA BASE DE USUARIOS.
 - AGREGAR BOTONES PARA INGRESAR CLIENTE, O PARA BUSCAR CLIENTE Y SUS DATOS, (BUSCAR POR NUMERO DE TELEFONO Y NOMBRE).
-- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE.
+- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE..
 
+TUVE UN PROBLEMA CON MI PC, ASI QUE RECUPERE DE GIT EL ULTIMO, HICE UN PUSH CON UNA PC NUEVA, LUEGO LOGRE TENER 
+CONFLICTOS EN GIT POR TENER 2 CARGAS PUSHEADAS EN EL MAIN DISTINTAS, ASI QUE RECUPERE ESTE ARCHIVO A LA ÚLTIMA VERSIÓN
+NUEVA PARA CONTINUAR EL TRABAJO, DEJO COMO EVIDENCIA ESTO PORQUE FUE EMOCIONANTE PODERLO RECUPERAR CON UN POCO DE 
+ESFUERZO (5MIN) Y QUIERO QUE QUEDE A POSTERIDAD.
 */
 
 //BASE DE CLIENTES
@@ -106,15 +110,18 @@ let pupas = [{}, {}, {}, {}, {}];
 // INGRESANDO VALORES CON EVENTOS.
 
 if (localStorage.length >= 5) {
-  const pedidoInicial =document.getElementById("datosPedido");
+  const pedidoInicial = document.getElementById("datosPedido");
   let revueltas = document.getElementById("rev");
-  revueltas.value = Number(localStorage.getItem(`revueltas`));
   let queso = document.getElementById("fri");
   let campesina = document.getElementById("camp");
   let chicharon = document.getElementById("chich");
   let vegetariana = document.getElementById("vege");
 
-  //pedidoInicial.appendChild(revueltas);
+  revueltas.value = Number(localStorage.getItem(`revueltas`));
+  queso.value = Number(localStorage.getItem(`queso`));
+  campesina.value = Number(localStorage.getItem(`campesina`));
+  chicharon.value = Number(localStorage.getItem(`chicharon`));
+  vegetariana.value = Number(localStorage.getItem(`vegetariana`));
 }
 
 let revueltas = document.getElementById("rev");
@@ -137,22 +144,23 @@ botonPupusas.onclick = () => {
   pupas[3] = parseInt(chicharon.value);
   pupas[4] = parseInt(vegetariana.value);
 
-  //DEPURANDO VALORES PARA NO OBTENER NEGATIVOS
-  for (n = 0; n < 5; n++) {
-    if (isNaN(pupas[n])) {
-      pupas[n] = 0;
+    //DEPURANDO VALORES PARA NO OBTENER NEGATIVOS
+    for (n = 0; n < 5; n++) {
+      if (isNaN(pupas[n])) {
+        pupas[n] = 0;
+      }
     }
-  }
-  console.log(pupas);
+    console.log(pupas);
 
   let TotalPupas = pupas.reduce((a, b) => a + b, 0);
   let PrecioPupas = [
-    pupas[0] * 0.9,
-    pupas[1] * 0.95,
+    pupas[0] * 1.0,
+    pupas[1] * 1.25,
     pupas[2] * 1.15,
     pupas[3] * 1.2,
     pupas[4] * 0.85,
   ];
+
   let TotalPrecio = PrecioPupas.reduce((a, b) => a + b, 0);
 
   console.log(TotalPupas);
