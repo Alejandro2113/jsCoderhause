@@ -105,10 +105,8 @@ function recarga() {
 
 let pupas = [{}, {}, {}, {}, {}];
 
-//FUNCION PARA CORREGIR LOS DATOS INGRESADOS EN LA ORDEN INICIAL DE LA CANTIDAD DE PUPUSAS
 
-// INGRESANDO VALORES CON EVENTOS.
-
+//FUNCION QUE REVISA SI EXISTE UN PEDIDO ANTERIOR
 if (localStorage.length >= 5) {
   const pedidoInicial = document.getElementById("datosPedido");
   let revueltas = document.getElementById("rev");
@@ -116,7 +114,7 @@ if (localStorage.length >= 5) {
   let campesina = document.getElementById("camp");
   let chicharon = document.getElementById("chich");
   let vegetariana = document.getElementById("vege");
-
+  
   revueltas.value = Number(localStorage.getItem(`revueltas`));
   queso.value = Number(localStorage.getItem(`queso`));
   campesina.value = Number(localStorage.getItem(`campesina`));
@@ -124,6 +122,7 @@ if (localStorage.length >= 5) {
   vegetariana.value = Number(localStorage.getItem(`vegetariana`));
 }
 
+// INGRESANDO VALORES CON EVENTOS.
 let revueltas = document.getElementById("rev");
 let queso = document.getElementById("fri");
 let campesina = document.getElementById("camp");
@@ -132,30 +131,33 @@ let vegetariana = document.getElementById("vege");
 
 let botonPupusas = document.getElementById("pedidoPupusas");
 botonPupusas.onclick = () => {
+  //AL PRINCIPIO SOLO ESCUCHA UNA VEZ && LUEGO ESCUCHA CADA CAMBIO
   revueltas.addEventListener("input", () => console.log(revueltas.value));
   queso.addEventListener("input", () => console.log(queso.value));
   campesina.addEventListener("input", () => console.log(campesina.value));
   chicharon.addEventListener("input", () => console.log(chicharon.value));
   vegetariana.addEventListener("input", () => console.log(vegetariana.value));
-
+  
   pupas[0] = parseInt(revueltas.value);
   pupas[1] = parseInt(queso.value);
   pupas[2] = parseInt(campesina.value);
   pupas[3] = parseInt(chicharon.value);
   pupas[4] = parseInt(vegetariana.value);
-
-    //DEPURANDO VALORES PARA NO OBTENER NEGATIVOS
-    for (n = 0; n < 5; n++) {
-      if (isNaN(pupas[n])) {
-        pupas[n] = 0;
-      }
+  
+  //FUNCION PARA CORREGIR LOS DATOS INGRESADOS EN LA ORDEN INICIAL DE LA CANTIDAD DE PUPUSAS
+  //DEPURANDO VALORES PARA NO OBTENER NaN
+  for (n = 0; n < 5; n++) {
+    if (isNaN(pupas[n])) {
+      pupas[n] = 0;
     }
-    console.log(pupas);
+  };
+
+  console.log(pupas);
 
   let TotalPupas = pupas.reduce((a, b) => a + b, 0);
   let PrecioPupas = [
-    pupas[0] * 1.0,
-    pupas[1] * 1.25,
+    pupas[0] * 0.9,
+    pupas[1] * 0.95,
     pupas[2] * 1.15,
     pupas[3] * 1.2,
     pupas[4] * 0.85,
@@ -166,6 +168,7 @@ botonPupusas.onclick = () => {
   console.log(TotalPupas);
   console.log(TotalPrecio.toFixed(2));
 
+  //ALMACEN DE DATOS PARA NO PERDER EL PEDIDO
   localStorage.setItem("revueltas", pupas[0]);
   localStorage.setItem("queso", pupas[1]);
   localStorage.setItem("campesina", pupas[2]);
