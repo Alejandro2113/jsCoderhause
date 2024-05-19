@@ -18,6 +18,68 @@ PREENTREGA
 
 */
 
+//BASE DE CLIENTES
+
+const baseClientes = [
+  {
+    idCliente: 1,
+    nombre: "EDUARDO GONZALEZ",
+    telefono: 61616565,
+    edad: 21,
+    direccion: "avenida siempre viva 120",
+    alergias: "pimienta",
+  },
+  {
+    idCliente: 2,
+    nombre: "jULIO MEDINA",
+    telefono: 61616566,
+    edad: 22,
+    direccion: "avenida siempre viva 121",
+    alergias: "loroco",
+  },
+  {
+    idCliente: 3,
+    nombre: "JOSUE GONZALEZ",
+    telefono: 61616060,
+    edad: 23,
+    direccion: "avenida siempre viva 122",
+  },
+  {
+    idCliente: 4,
+    nombre: "HOMERO SIMPSON",
+    telefono: 70707878,
+    edad: 34,
+    direccion: "avenida siempre viva 123",
+    alergias: "pimienta",
+  },
+  {
+    idCliente: 5,
+    nombre: "GABRIELA GONZALEZ",
+    telefono: 61616000,
+    edad: 27,
+    direccion: "avenida siempre viva 124",
+  },
+  {
+    idCliente: 6,
+    nombre: "ALE",
+    telefono: 78707870,
+    edad: 30,
+    direccion: "avenida siempre viva 125",
+    alergias: "colorante rojo",
+  },
+];
+
+class MiCliente {
+  constructor(idCliente, telefono, nombre, edad, direccion, alergias) {
+    this.idCliente = idCliente;
+    this.telefono = telefono;
+    this.nombre = nombre;
+    this.edad = edad;
+    this.direccion = direccion;
+    this.alergias = alergias;
+  }
+}
+
 //Funcion para depurando de valores !logicos
 function recarga() {
   let entrada = confirm(
@@ -37,44 +99,72 @@ function recarga() {
   }
 }
 
-let pupusas = [0, 0, 0, 0, 0];
-let pupas = [0, 0, 0, 0, 0];
+let pupas = [{}, {}, {}, {}, {}];
 
 //FUNCION PARA CORREGIR LOS DATOS INGRESADOS EN LA ORDEN INICIAL DE LA CANTIDAD DE PUPUSAS
 
 // INGRESANDO VALORES CON EVENTOS.
 
-let revueltas = document.getElementById("rev");
-revueltas.addEventListener("input", () => console.log(revueltas.value));
-let queso = document.getElementById('fri');
-queso.addEventListener("input", () => console.log(queso.value));
-let campesina = document.getElementById('camp');
-campesina.addEventListener("input", () => console.log(campesina.value));
-let chicharon = document.getElementById('chich');
-chicharon.addEventListener("input", () => console.log(chicharon.value));
-let vegetariana = document.getElementById('vege');
-vegetariana.addEventListener("input", () => console.log(vegetariana.value));
+if (localStorage.length >= 5) {
+  const pedidoInicial =document.getElementById("datosPedido");
+  let revueltas = document.getElementById("rev");
+  let queso = document.getElementById("fri");
+  let campesina = document.getElementById("camp");
+  let chicharon = document.getElementById("chich");
+  let vegetariana = document.getElementById("vege");
+  
+  revueltas.value = Number(localStorage.getItem(`revueltas`));
+  queso.value = Number(localStorage.getItem(`queso`));
+  campesina.value = Number(localStorage.getItem(`campesina`));
+  chicharon.value = Number(localStorage.getItem(`chicharon`));
+  vegetariana.value = Number(localStorage.getItem(`vegetariana`));
 
+}
+
+let revueltas = document.getElementById("rev");
+let queso = document.getElementById("fri");
+let campesina = document.getElementById("camp");
+let chicharon = document.getElementById("chich");
+let vegetariana = document.getElementById("vege");
 
 let botonPupusas = document.getElementById("pedidoPupusas");
 botonPupusas.onclick = () => {
-    pupas[0]=parseInt(revueltas.value);
-    pupas[1]=parseInt(queso.value);
-    pupas[2]=parseInt(campesina.value);
-    pupas[3]=parseInt(chicharon.value);
-    pupas[4]=parseInt(vegetariana.value);
-    let TotalPupas = pupas.reduce((a, b) => a + b, 0);
-    let PrecioPupas = [
-    pupas[0] * 1.0,
-    pupas[1] * 1.25,
+  revueltas.addEventListener("input", () => console.log(revueltas.value));
+  queso.addEventListener("input", () => console.log(queso.value));
+  campesina.addEventListener("input", () => console.log(campesina.value));
+  chicharon.addEventListener("input", () => console.log(chicharon.value));
+  vegetariana.addEventListener("input", () => console.log(vegetariana.value));
+
+  pupas[0] = parseInt(revueltas.value);
+  pupas[1] = parseInt(queso.value);
+  pupas[2] = parseInt(campesina.value);
+  pupas[3] = parseInt(chicharon.value);
+  pupas[4] = parseInt(vegetariana.value);
+
+  //DEPURANDO VALORES PARA NO OBTENER NEGATIVOS
+  for (n = 0; n < 5; n++) {
+    if (isNaN(pupas[n])) {
+      pupas[n] = 0;
+    }
+  }
+  console.log(pupas);
+
+  let TotalPupas = pupas.reduce((a, b) => a + b, 0);
+  let PrecioPupas = [
+    pupas[0] * 0.9,
+    pupas[1] * 0.95,
     pupas[2] * 1.15,
     pupas[3] * 1.2,
     pupas[4] * 0.85,
-    ];
-    let TotalPrecio = PrecioPupas.reduce((a, b) => a + b, 0);
-    
-    console.log(TotalPupas);
-    console.log(TotalPrecio);
-};
+  ];
+  let TotalPrecio = PrecioPupas.reduce((a, b) => a + b, 0);
 
-//DEPURANDO VALORES PARA NO OBTENER NEGATIVOS
+  console.log(TotalPupas);
+  console.log(TotalPrecio.toFixed(2));
+
+  localStorage.setItem("revueltas", pupas[0]);
+  localStorage.setItem("queso", pupas[1]);
+  localStorage.setItem("campesina", pupas[2]);
+  localStorage.setItem("chicharon", pupas[3]);
+  localStorage.setItem("vegetariana", pupas[4]);
+};
