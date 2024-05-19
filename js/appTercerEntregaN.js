@@ -14,12 +14,8 @@ PREENTREGA
 - CREAR EVENTOS PARA QUITAR LOS PROMP.
 - MEJORAR LA BASE DE USUARIOS.
 - AGREGAR BOTONES PARA INGRESAR CLIENTE, O PARA BUSCAR CLIENTE Y SUS DATOS, (BUSCAR POR NUMERO DE TELEFONO Y NOMBRE).
-- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE..
+- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE.
 
-TUVE UN PROBLEMA CON MI PC, ASI QUE RECUPERE DE GIT EL ULTIMO, HICE UN PUSH CON UNA PC NUEVA, LUEGO LOGRE TENER 
-CONFLICTOS EN GIT POR TENER 2 CARGAS PUSHEADAS EN EL MAIN DISTINTAS, ASI QUE RECUPERE ESTE ARCHIVO A LA ÚLTIMA VERSIÓN
-NUEVA PARA CONTINUAR EL TRABAJO, DEJO COMO EVIDENCIA ESTO PORQUE FUE EMOCIONANTE PODERLO RECUPERAR CON UN POCO DE 
-ESFUERZO (5MIN) Y QUIERO QUE QUEDE A POSTERIDAD.
 */
 
 //BASE DE CLIENTES
@@ -105,24 +101,22 @@ function recarga() {
 
 let pupas = [{}, {}, {}, {}, {}];
 
+//FUNCION PARA CORREGIR LOS DATOS INGRESADOS EN LA ORDEN INICIAL DE LA CANTIDAD DE PUPUSAS
 
-//FUNCION QUE REVISA SI EXISTE UN PEDIDO ANTERIOR
+// INGRESANDO VALORES CON EVENTOS.
+
 if (localStorage.length >= 5) {
-  const pedidoInicial = document.getElementById("datosPedido");
+  const pedidoInicial =document.getElementById("datosPedido");
   let revueltas = document.getElementById("rev");
+  revueltas.value = Number(localStorage.getItem(`revueltas`));
   let queso = document.getElementById("fri");
   let campesina = document.getElementById("camp");
   let chicharon = document.getElementById("chich");
   let vegetariana = document.getElementById("vege");
-  
-  revueltas.value = Number(localStorage.getItem(`revueltas`));
-  queso.value = Number(localStorage.getItem(`queso`));
-  campesina.value = Number(localStorage.getItem(`campesina`));
-  chicharon.value = Number(localStorage.getItem(`chicharon`));
-  vegetariana.value = Number(localStorage.getItem(`vegetariana`));
+
+  //pedidoInicial.appendChild(revueltas);
 }
 
-// INGRESANDO VALORES CON EVENTOS.
 let revueltas = document.getElementById("rev");
 let queso = document.getElementById("fri");
 let campesina = document.getElementById("camp");
@@ -131,27 +125,24 @@ let vegetariana = document.getElementById("vege");
 
 let botonPupusas = document.getElementById("pedidoPupusas");
 botonPupusas.onclick = () => {
-  //AL PRINCIPIO SOLO ESCUCHA UNA VEZ && LUEGO ESCUCHA CADA CAMBIO
   revueltas.addEventListener("input", () => console.log(revueltas.value));
   queso.addEventListener("input", () => console.log(queso.value));
   campesina.addEventListener("input", () => console.log(campesina.value));
   chicharon.addEventListener("input", () => console.log(chicharon.value));
   vegetariana.addEventListener("input", () => console.log(vegetariana.value));
-  
+
   pupas[0] = parseInt(revueltas.value);
   pupas[1] = parseInt(queso.value);
   pupas[2] = parseInt(campesina.value);
   pupas[3] = parseInt(chicharon.value);
   pupas[4] = parseInt(vegetariana.value);
-  
-  //FUNCION PARA CORREGIR LOS DATOS INGRESADOS EN LA ORDEN INICIAL DE LA CANTIDAD DE PUPUSAS
-  //DEPURANDO VALORES PARA NO OBTENER NaN
+
+  //DEPURANDO VALORES PARA NO OBTENER NEGATIVOS
   for (n = 0; n < 5; n++) {
     if (isNaN(pupas[n])) {
       pupas[n] = 0;
     }
-  };
-
+  }
   console.log(pupas);
 
   let TotalPupas = pupas.reduce((a, b) => a + b, 0);
@@ -162,13 +153,11 @@ botonPupusas.onclick = () => {
     pupas[3] * 1.2,
     pupas[4] * 0.85,
   ];
-
   let TotalPrecio = PrecioPupas.reduce((a, b) => a + b, 0);
 
   console.log(TotalPupas);
   console.log(TotalPrecio.toFixed(2));
 
-  //ALMACEN DE DATOS PARA NO PERDER EL PEDIDO
   localStorage.setItem("revueltas", pupas[0]);
   localStorage.setItem("queso", pupas[1]);
   localStorage.setItem("campesina", pupas[2]);
