@@ -105,7 +105,6 @@ function recarga() {
 
 let pupas = [{}, {}, {}, {}, {}];
 
-
 //FUNCION QUE REVISA SI EXISTE UN PEDIDO ANTERIOR
 if (localStorage.length >= 5) {
   const pedidoInicial = document.getElementById("datosPedido");
@@ -114,7 +113,7 @@ if (localStorage.length >= 5) {
   let campesina = document.getElementById("camp");
   let chicharon = document.getElementById("chich");
   let vegetariana = document.getElementById("vege");
-  
+
   revueltas.value = Number(localStorage.getItem(`revueltas`));
   queso.value = Number(localStorage.getItem(`queso`));
   campesina.value = Number(localStorage.getItem(`campesina`));
@@ -137,20 +136,20 @@ botonPupusas.onclick = () => {
   campesina.addEventListener("input", () => console.log(campesina.value));
   chicharon.addEventListener("input", () => console.log(chicharon.value));
   vegetariana.addEventListener("input", () => console.log(vegetariana.value));
-  
+
   pupas[0] = parseInt(revueltas.value);
   pupas[1] = parseInt(queso.value);
   pupas[2] = parseInt(campesina.value);
   pupas[3] = parseInt(chicharon.value);
   pupas[4] = parseInt(vegetariana.value);
-  
+
   //FUNCION PARA CORREGIR LOS DATOS INGRESADOS EN LA ORDEN INICIAL DE LA CANTIDAD DE PUPUSAS
   //DEPURANDO VALORES PARA NO OBTENER NaN
   for (n = 0; n < 5; n++) {
     if (isNaN(pupas[n])) {
       pupas[n] = 0;
     }
-  };
+  }
 
   console.log(pupas);
 
