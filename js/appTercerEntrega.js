@@ -104,7 +104,6 @@ function recarga() {
 }
 
 let pupas = [{}, {}, {}, {}, {}];
-
 //FUNCION QUE REVISA SI EXISTE UN PEDIDO ANTERIOR
 if (localStorage.length >= 5) {
   const pedidoInicial = document.getElementById("datosPedido");
@@ -151,8 +150,6 @@ botonPupusas.onclick = () => {
     }
   }
 
-  console.log(pupas);
-
   let TotalPupas = pupas.reduce((a, b) => a + b, 0);
   let PrecioPupas = [
     pupas[0] * 0.9,
@@ -164,13 +161,94 @@ botonPupusas.onclick = () => {
 
   let TotalPrecio = PrecioPupas.reduce((a, b) => a + b, 0);
 
-  console.log(TotalPupas);
-  console.log(TotalPrecio.toFixed(2));
-
   //ALMACEN DE DATOS PARA NO PERDER EL PEDIDO
   localStorage.setItem("revueltas", pupas[0]);
   localStorage.setItem("queso", pupas[1]);
   localStorage.setItem("campesina", pupas[2]);
   localStorage.setItem("chicharon", pupas[3]);
   localStorage.setItem("vegetariana", pupas[4]);
+  localStorage.setItem("TotalPupas", TotalPupas);
+  localStorage.setItem("TotalPrecio", TotalPrecio.toFixed(2));
+
+  console.log(pupas);
+  console.log("TOTAL PUPUSAS = "+TotalPupas);
+  console.log("$ "+TotalPrecio.toFixed(2));
+
+
+  if (
+    pupas[0] == 0 &&
+    pupas[1] == 0 &&
+    pupas[2] == 0 &&
+    pupas[3] == 0 &&
+    pupas[4] == 0
+  ) {
+    //DEJARE SOLO ESTE ALERT PARA PODER ADVERTIR UNA VEZ QUE NO SE INGRESARON DATOS
+    localStorage.clear();
+    alert(
+      "Porfavor, ingresa cuantas pupusas y luego pulsa en enviar para poder tomar tu orden"
+    );
+    location.reload();
+  }
+  if (localStorage.length >= 7) {
+    const direccionEnvio = document.getElementById("datosPedido");
+    direccionEnvio.innerHTML = "";
+    let divDireccion = document.createElement("div");
+    divDireccion.setAttribute("id", "envio");
+    divDireccion.setAttribute("class", "envio");
+    let divContenedor = document.createElement("div");
+    divContenedor.setAttribute("id","contenedor")
+    divContenedor.innerHTML = "";
+    let h3Form = document.createElement("h4");
+    h3Form.innerText = "INGRESA DETALLES DEL ENVIO";
+    //document.body.appendChild(divContenedor);
+    divContenedor.appendChild(h3Form);
+
+    let insetBr = document.createElement("br");
+    insetBr;
+    divContenedor.appendChild(insetBr);
+    
+    let botonATRAS= document.createElement("button");
+    botonATRAS.setAttribute("class", "botonDireccion");
+    botonATRAS.setAttribute("id", "botonDireccion");
+    botonATRAS.textContent = "Revisar pedido";
+    botonATRAS.onclick = () => {location.reload();}
+    divContenedor.appendChild(botonATRAS);
+
+    let botonDireccionNuevo = document.createElement("button");
+    botonDireccionNuevo.setAttribute("class", "botonDireccion");
+    botonDireccionNuevo.setAttribute("id", "botonDireccion");
+    botonDireccionNuevo.textContent = "Cliente Nuevo";
+    botonDireccionNuevo.onclick = () => {
+      //CREANDO EL FORMULARIO CLIENTE NUEVO
+      /* 
+      <div class="envio" id="envio">
+        <form id = "formNuevo">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br>
+        <label for="edad">Edad:</label><br>
+        <input type="number" min="12" max="100" id="age" name="Edad"><br>
+        <label for="telefono">Teléfono:</label><br>
+        <input type="tel" id="telefono" name="telefono"><br>
+        <label for="direccion">Dirección:</label><br>
+        <input type="text" id="direccion" name="direccion"><br>
+        <label for="alergia">Alergia:</label><br>
+        <input type="text" id="alergia" name="alergia"><br>
+        <input type="submit" value="Enviar">
+        </form>
+      </div>
+      */
+    };
+    divContenedor.appendChild(botonDireccionNuevo);
+
+    direccionEnvio.appendChild(divDireccion);
+    let botonDireccionRegistrado = document.createElement("button");
+    botonDireccionRegistrado.setAttribute("class", "botonDireccion");
+    botonDireccionRegistrado.setAttribute("id", "botonDireccion");
+    botonDireccionRegistrado.textContent = "Cliente Registrado";
+    botonDireccionRegistrado.onclick = () => {};
+
+    divContenedor.appendChild(botonDireccionRegistrado);
+    divDireccion.appendChild(divContenedor);
+    direccionEnvio.appendChild(divDireccion);
+  }
 };
