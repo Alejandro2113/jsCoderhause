@@ -187,22 +187,24 @@ botonPupusas.onclick = () => {
     alert(
       "Porfavor, ingresa cuantas pupusas y luego pulsa en enviar para poder tomar tu orden"
     );
-    location.reload();
+    //location.reload();
   }
+
+  const direccionEnvio = document.getElementById("datosPedido");
+  let divDireccion = document.createElement("div");
+  divDireccion.setAttribute("id", "envio");
+  divDireccion.setAttribute("class", "envio");
+  let divContenedor = document.createElement("div");
+  divContenedor.setAttribute("id","contenedor")
+  divContenedor.innerHTML = "";
+  
   if (localStorage.length >= 7) {
-    const direccionEnvio = document.getElementById("datosPedido");
+    
     direccionEnvio.innerHTML = "";
-    let divDireccion = document.createElement("div");
-    divDireccion.setAttribute("id", "envio");
-    divDireccion.setAttribute("class", "envio");
-    let divContenedor = document.createElement("div");
-    divContenedor.setAttribute("id","contenedor")
-    divContenedor.innerHTML = "";
     let h3Form = document.createElement("h4");
     h3Form.innerText = "INGRESA DETALLES DEL ENVIO";
-    //document.body.appendChild(divContenedor);
     divContenedor.appendChild(h3Form);
-
+    
     let insetBr = document.createElement("br");
     insetBr;
     divContenedor.appendChild(insetBr);
@@ -213,12 +215,24 @@ botonPupusas.onclick = () => {
     botonATRAS.textContent = "Revisar pedido";
     botonATRAS.onclick = () => {location.reload();}
     divContenedor.appendChild(botonATRAS);
-
+    
     let botonDireccionNuevo = document.createElement("button");
     botonDireccionNuevo.setAttribute("class", "botonDireccion");
     botonDireccionNuevo.setAttribute("id", "botonDireccion");
     botonDireccionNuevo.textContent = "Cliente Nuevo";
+    
+    let divClienteNuevo = document.createElement("div");
+    divClienteNuevo.setAttribute("id","clienteNurvo");
+    divClienteNuevo.setAttribute("class","clienteNuevo");
+    
     botonDireccionNuevo.onclick = () => {
+
+      divClienteNuevo.innerHTML = "";
+      let formNuevo = document.createElement("form");
+      formNuevo.setAttribute("id","envioNuevo");
+      formNuevo.setAttribute("class","envioNuevo");
+      
+
       //CREANDO EL FORMULARIO CLIENTE NUEVO
       /* 
       <div class="envio" id="envio">
@@ -237,7 +251,10 @@ botonPupusas.onclick = () => {
         </form>
       </div>
       */
+     divClienteNuevo.appendChild(formNuevo);
+     divContenedor.appendChild(divClienteNuevo);
     };
+
     divContenedor.appendChild(botonDireccionNuevo);
 
     direccionEnvio.appendChild(divDireccion);
