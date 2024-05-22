@@ -1,4 +1,4 @@
-/*Orden de pupusas (Me costo encontrat otro ejemplo) ver 2.3.0.
+/*Orden de pupas (Me costo encontrat otro ejemplo) ver 2.3.0.
 Alumno= Moises Alejandro Gonzalez Moran.
 Comision CODERHAUSE javascrit (No "JAVA" sino me funean) #54005.
 Tutoría a cargo de Marcelo Furlong.
@@ -128,6 +128,7 @@ let chicharon = document.getElementById("chich");
 let vegetariana = document.getElementById("vege");
 
 let botonPupusas = document.getElementById("pedidoPupusas");
+
 botonPupusas.onclick = () => {
   //AL PRINCIPIO SOLO ESCUCHA UNA VEZ && LUEGO ESCUCHA CADA CAMBIO
   revueltas.addEventListener("input", () => console.log(revueltas.value));
@@ -151,6 +152,7 @@ botonPupusas.onclick = () => {
   }
 
   let TotalPupas = pupas.reduce((a, b) => a + b, 0);
+
   let PrecioPupas = [
     pupas[0] * 0.9,
     pupas[1] * 0.95,
@@ -171,9 +173,8 @@ botonPupusas.onclick = () => {
   localStorage.setItem("TotalPrecio", TotalPrecio.toFixed(2));
 
   console.log(pupas);
-  console.log("TOTAL PUPUSAS = "+TotalPupas);
-  console.log("$ "+TotalPrecio.toFixed(2));
-
+  console.log("TOTAL PUPUSAS = " + TotalPupas);
+  console.log("$ " + TotalPrecio.toFixed(2));
 
   if (
     pupas[0] == 0 &&
@@ -185,87 +186,113 @@ botonPupusas.onclick = () => {
     //DEJARE SOLO ESTE ALERT PARA PODER ADVERTIR UNA VEZ QUE NO SE INGRESARON DATOS
     localStorage.clear();
     alert(
-      "Porfavor, ingresa cuantas pupusas y luego pulsa en enviar para poder tomar tu orden"
+      "Porfavor, ingresa cuantas pupas y luego pulsa en enviar para poder tomar tu orden"
     );
-    //location.reload();
+    location.reload();
   }
 
-  const direccionEnvio = document.getElementById("datosPedido");
-  let divDireccion = document.createElement("div");
-  divDireccion.setAttribute("id", "envio");
-  divDireccion.setAttribute("class", "envio");
-  let divContenedor = document.createElement("div");
-  divContenedor.setAttribute("id","contenedor")
-  divContenedor.innerHTML = "";
-  
+  let clienteFinal = document.getElementById("nombre");
+  let edadCliente = document.getElementById("age");
+  let telefonoCleinte = document.getElementById("telefono");
+  let direccionCliente = document.getElementById("direccion");
+  let alergiaCliente = document.getElementById("alergia");
+
+  console.log("Cliente= "+clienteFinal.value);
+  console.log("Edad= "+edadCliente.value);
+  console.log("Telefono= "+telefonoCleinte.value);
+  console.log("Direccion= "+direccionCliente.value);
+  console.log("Alergias= "+alergiaCliente.value);
+
+  clienteNuevo = new MiCliente (baseClientes.length+1,telefonoCleinte.value,clienteFinal.value,edadCliente.value,direccionCliente.value,alergiaCliente.value);
+
+  botonPupusas.remove();
+
   if (localStorage.length >= 7) {
-    
-    direccionEnvio.innerHTML = "";
-    let h3Form = document.createElement("h4");
-    h3Form.innerText = "INGRESA DETALLES DEL ENVIO";
-    divContenedor.appendChild(h3Form);
-    
-    let insetBr = document.createElement("br");
-    insetBr;
-    divContenedor.appendChild(insetBr);
-    
-    let botonATRAS= document.createElement("button");
-    botonATRAS.setAttribute("class", "botonDireccion");
-    botonATRAS.setAttribute("id", "botonDireccion");
-    botonATRAS.textContent = "Revisar pedido";
-    botonATRAS.onclick = () => {location.reload();}
-    divContenedor.appendChild(botonATRAS);
-    
-    let botonDireccionNuevo = document.createElement("button");
-    botonDireccionNuevo.setAttribute("class", "botonDireccion");
-    botonDireccionNuevo.setAttribute("id", "botonDireccion");
-    botonDireccionNuevo.textContent = "Cliente Nuevo";
-    
-    let divClienteNuevo = document.createElement("div");
-    divClienteNuevo.setAttribute("id","clienteNurvo");
-    divClienteNuevo.setAttribute("class","clienteNuevo");
-    
-    botonDireccionNuevo.onclick = () => {
+    const divCliente = document.getElementById("cliente");
+    const divContenedor = document.getElementById("datosPedido");
 
-      divClienteNuevo.innerHTML = "";
-      let formNuevo = document.createElement("form");
-      formNuevo.setAttribute("id","envioNuevo");
-      formNuevo.setAttribute("class","envioNuevo");
-      
+    let botonAlmacenarCliente = document.createElement("button");
+    botonAlmacenarCliente.setAttribute("class", "botonDireccion");
+    botonAlmacenarCliente.setAttribute("id", "botonDireccion");
+    botonAlmacenarCliente.textContent = "Almacenar mis datos";
+    botonAlmacenarCliente.onclick = () => {
+      //PUSHEAR LOS DAROS A LA BASE DE DATOS DEL CLIENTES Y ALMACENAR
+      baseClientes.push(clienteNuevo);
 
-      //CREANDO EL FORMULARIO CLIENTE NUEVO
-      /* 
-      <div class="envio" id="envio">
-        <form id = "formNuevo">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre"><br>
-        <label for="edad">Edad:</label><br>
-        <input type="number" min="12" max="100" id="age" name="Edad"><br>
-        <label for="telefono">Teléfono:</label><br>
-        <input type="tel" id="telefono" name="telefono"><br>
-        <label for="direccion">Dirección:</label><br>
-        <input type="text" id="direccion" name="direccion"><br>
-        <label for="alergia">Alergia:</label><br>
-        <input type="text" id="alergia" name="alergia"><br>
-        <input type="submit" value="Enviar">
-        </form>
-      </div>
-      */
-     divClienteNuevo.appendChild(formNuevo);
-     divContenedor.appendChild(divClienteNuevo);
+      botonAlmacenarCliente.remove();
+    };
+    divCliente.appendChild(botonAlmacenarCliente);
+
+    let generarPedido = document.createElement("button");
+    generarPedido.setAttribute("class", "botonDireccion");
+    generarPedido.setAttribute("id", "botonDireccion");
+    generarPedido.textContent = "Generar Recibo";
+    divCliente.appendChild(generarPedido);
+
+    //INGRESAR LOS DATOS DEL CLIENTE
+
+    generarPedido.onclick = () => {
+      //LIMPIANDO DATOS
+      divCliente.removeChild(generarPedido);
+      divContenedor.innerHTML = "";
+
+      const divRecibos = document.createElement("div");
+      divRecibos.setAttribute("id", "reciboFinal");
+      divRecibos.setAttribute("class", "recibo");
+      const recibofinal = document.createElement("div");
+      recibofinal.setAttribute("id", "reciboFinal");
+      const nombreRecibo = document.createElement("h3");
+      nombreRecibo.innerText = "DETALLES DE TU ORDEN";
+      const horaPedido = document.createElement("p");
+      horaPedido.innerText = `Hora del pedido:\n${Date()}`;
+      const nombreCliente = document.createElement("p");
+      nombreCliente.innerText = `Orde a nombre de:\n${clienteFinal.value}`;
+      const direccionRecibo = document.createElement("p");
+      direccionRecibo.innerText = `Tu direccion es:\n${direccionCliente.value}`;
+      const resumenPupusas = document.createElement("p");
+      resumenPupusas.innerText =
+        "El resumen de tu pedido es:\n\n" +
+        `${pupas[0]} - Pupusas Revueltas\t - (1.00)\t - $ ${(
+          pupas[0] * 1.0
+        ).toFixed(2)}\n` +
+        `${pupas[1]} - Pupusas La queso\t - (1.25)\t - $ ${(
+          pupas[1] * 1.25
+        ).toFixed(2)}\n` +
+        `${pupas[2]} - Pupusas Campesina\t - (1.15)\t - $ ${(
+          pupas[2] * 1.15
+        ).toFixed(2)}\n` +
+        `${pupas[3]} - Pupusas La Caperusita\t - (1.20)\t - $ ${(
+          pupas[3] * 1.2
+        ).toFixed(2)}\n` +
+        `${pupas[4]} - Pupusas La vegetariana\t - (0.85)\t - $ ${(
+          pupas[4] * 0.85
+        ).toFixed(2)}\n 
+          En total son ${TotalPupas} Pupusas
+          Cantidad a pagar = $ ${TotalPrecio.toFixed(2)}`;
+
+      let regresar = document.createElement("button");
+      regresar.setAttribute("class", "botonDireccion");
+      regresar.setAttribute("id", "botonDireccion");
+      regresar.textContent = "Revisar Pedido";
+      regresar.onclick = () => {
+        location.reload();
+      };
+
+      recibofinal.appendChild(nombreRecibo);
+      recibofinal.appendChild(horaPedido);
+      recibofinal.appendChild(nombreCliente);
+      recibofinal.appendChild(direccionRecibo);
+      recibofinal.appendChild(resumenPupusas);
+      recibofinal.appendChild(regresar);
+      divRecibos.appendChild(recibofinal);
+      divContenedor.appendChild(divRecibos);
+
+      divImagen = document.createElement("div");
+      divImagen.setAttribute("class", "imgPupusas");
     };
 
-    divContenedor.appendChild(botonDireccionNuevo);
-
-    direccionEnvio.appendChild(divDireccion);
-    let botonDireccionRegistrado = document.createElement("button");
-    botonDireccionRegistrado.setAttribute("class", "botonDireccion");
-    botonDireccionRegistrado.setAttribute("id", "botonDireccion");
-    botonDireccionRegistrado.textContent = "Cliente Registrado";
-    botonDireccionRegistrado.onclick = () => {};
-
-    divContenedor.appendChild(botonDireccionRegistrado);
-    divDireccion.appendChild(divContenedor);
-    direccionEnvio.appendChild(divDireccion);
+    //divContenedor.appendChild(generarPedido);
+    //divDireccion.appendChild(divContenedor);
+    //direccionEnvio.appendChild(divDireccion);
   }
 };

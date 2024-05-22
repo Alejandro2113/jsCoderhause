@@ -35,44 +35,67 @@
                     <table>
                         <thead>
                             <tr>
-                                
+
                                 <th>INGRESA TU PEDIDO AQUÍ</th>
                                 <th>CUANTAS QUIERES?</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Revueltas (Queso, frijoles, chicharon, hongos)</td>
-                                <td><form class="cantidad" ><input id="rev" type="number" min="0" max="50"></form></td>
+                                <td>
+                                    <form class="cantidad"><input id="rev" type="number" min="0" max="50"></form>
+                                </td>
                             </tr>
                             <tr>
                                 <td>La frijol y queso (Queso, Frijol y loroco)</td>
-                                <td><form class="cantidad" ><input id="fri" type="number" min="0" max="50"></form></td>
-                                
+                                <td>
+                                    <form class="cantidad"><input id="fri" type="number" min="0" max="50"></form>
+                                </td>
+
                             </tr>
                             <tr>
                                 <td>Campesina (Queso, frijol, Hongos)</td>
-                                <td><form class="cantidad"><input id="camp" type="number" min="0" max="50"></form></td>
-                                
+                                <td>
+                                    <form class="cantidad"><input id="camp" type="number" min="0" max="50"></form>
+                                </td>
+
                             </tr>
                             <tr>
                                 <td>Chicharon (Queso, y Chicharon)</td>
-                                <td><form class="cantidad"><input id="chich" type="number" min="0" max="50"></form></td>
-                                
+                                <td>
+                                    <form class="cantidad"><input id="chich" type="number" min="0" max="50"></form>
+                                </td>
+
                             </tr>
                             <tr>
                                 <td>La vegetariana (Espinaca, hongos, mora, ajo)</td>
-                                <td><form class="cantidad"><input id="vege" type="number" min="0" max="50"></form></td>
-                                
+                                <td>
+                                    <form class="cantidad"><input id="vege" type="number" min="0" max="50"></form>
+                                </td>
+
                             </tr>
                         </tbody>
                     </table>
-                    <button id="pedidoPupusas">Enviar</button>
-                       
-                   <!-- <div class="recibo" id="pedidos">
-   
-                   </div> -->
+                    
+                    <div class="envio" id="cliente">
+                        
+                        <form id="formNuevo">
+                            <label for="nombre">Nombre:</label><br>
+                            <input type="text" id="nombre" name="nombre"><br>
+                            <label for="edad">Edad:</label><br>
+                            <input type="number" min="12" max="100" id="age" name="Edad"><br>
+                            <label for="telefono">Teléfono:</label><br>
+                            <input type="tel" id="telefono" name="telefono"><br>
+                            <label for="direccion">Dirección:</label><br>
+                            <input type="text" id="direccion" name="direccion"><br>
+                            <label for="alergia">Alergia:</label><br>
+                            <input type="text" id="alergia" name="alergia"><br>
+                            <input type="button" id="pedidoPupusas" value="ENVIAR PEDIDO">
+                        </form>
+                    </div>
+
                 </div>
                 
 

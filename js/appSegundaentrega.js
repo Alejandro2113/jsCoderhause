@@ -315,6 +315,10 @@ let TotalPrecio = PrecioPupusas.reduce((a, b) => a + b, 0);
 //DOM---- PARA MOSTRAR EL PEDIDO Y LOS DATOS DE ENVIO.
 //id="pedidos"
 
+let divReibos = document.createElement("div");
+divReibos.setAttribute("id", "pedidos");
+divReibos.setAttribute("class", "pedidos");
+
 const recibofinal = document.getElementById("pedidos");
 const nombreRecibo = document.createElement("h3");
 nombreRecibo.innerText = "DETALLES DE TU ORDEN";
@@ -344,6 +348,47 @@ resumenPupusas.innerText =
   ).toFixed(2)}\n 
     En total son ${TotalPupas} Pupusas
     Cantidad a pagar = $ ${TotalPrecio.toFixed(2)}`;
+
+
+recibofinal.appendChild(nombreRecibo);
+recibofinal.appendChild(horaPedido);
+recibofinal.appendChild(nombreCliente);
+recibofinal.appendChild(direccionRecibo);
+recibofinal.appendChild(resumenPupusas);
+divReibos.appendChild(recibofinal);
+
+//codigo a revisar
+
+
+const recibofinal = document.getElementById("Datos");
+const nombreRecibo = document.createElement("h3");
+nombreRecibo.innerText = "DETALLES DE TU ORDEN";
+const horaPedido = document.createElement("p");
+horaPedido.innerText = `Hora del pedido:\n${Date()}`;
+const nombreCliente = document.createElement("p");
+nombreCliente.innerText = `Orde a nombre de: {clienteFinal}`;
+const direccionRecibo = document.createElement("p");
+direccionRecibo.innerText = `Tu direccion es: {direccionFinal}`;
+const resumenPupusas = document.createElement("p");
+resumenPupusas.innerText =
+  "El resumen de tu pedido es:\n\n" +
+  `${pupas[0]} - Pupusas Revueltas\t - (1.00)\t - $${(
+    pupas[0] * 1.0
+  ).toFixed(2)}\n` +
+  `${pupas[1]} - Pupusas La queso\t - (1.25)\t - $${(
+    pupas[1] * 1.25
+  ).toFixed(2)}\n` +
+  `${pupas[2]} - Pupusas Campesina\t - (1.15)\t - $${(
+    pupas[2] * 1.15
+  ).toFixed(2)}\n` +
+  `${pupas[3]} - Pupusas La caperusita\t - (1.20)\t - $${(
+    pupas[3] * 1.2
+  ).toFixed(2)}\n` +
+  `${pupas[4]} - Pupusas La vegetariana\t - (0.85)\t - $${(
+    pupas[4] * 0.85
+  ).toFixed(2)}\n 
+En total son ${TotalPupas} Pupusas
+Cantidad a pagar = $ ${TotalPrecio.toFixed(2)}`;
 
 recibofinal.appendChild(nombreRecibo);
 recibofinal.appendChild(horaPedido);

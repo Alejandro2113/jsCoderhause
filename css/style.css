@@ -148,7 +148,7 @@ main .elm .cont2 .datosPedido {
   padding: 10px;
 }
 main .elm .cont2 .datosPedido table {
-  width: 30%;
+  width: 40%;
   border-collapse: collapse;
 }
 main .elm .cont2 .datosPedido table thead tr {
@@ -166,14 +166,14 @@ main .elm .cont2 .datosPedido td .cantidad {
   text-justify: center;
 }
 main .elm .cont2 .envio {
-  width: 25%;
+  width: 40%;
   margin: 10px;
 }
 main .elm .cont2 .envio p {
   color: aqua;
 }
 main .elm .cont2 .recibo {
-  width: 30%;
+  width: 90%;
   border-radius: 12px;
   background-color: darkcyan;
   margin: 10px;
