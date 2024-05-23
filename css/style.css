@@ -147,6 +147,15 @@ main .elm .cont2 .datosPedido {
   margin: 10px;
   padding: 10px;
 }
+main .elm .cont2 .datosPedido .botonDireccion {
+  margin: 10px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  background-color: aquamarine;
+  color: black;
+  font-weight: 600;
+}
 main .elm .cont2 .datosPedido table {
   width: 40%;
   border-collapse: collapse;
@@ -166,11 +175,13 @@ main .elm .cont2 .datosPedido td .cantidad {
   text-justify: center;
 }
 main .elm .cont2 .envio {
-  width: 40%;
+  width: 45%;
   margin: 10px;
 }
-main .elm .cont2 .envio p {
-  color: aqua;
+main .elm .cont2 .envio .formNuevo {
+  font-size: 20px;
+  color: aquamarine;
+  align-content: center;
 }
 main .elm .cont2 .recibo {
   width: 90%;

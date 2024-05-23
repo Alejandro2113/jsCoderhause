@@ -7,14 +7,15 @@ Tutoría a cargo de Marcelo Furlong.
 /* DEJO CLAROS MIS OBJETIVOS PARA TRAZAR UNA META Y DEFINIR PUNTOS A TOCAR EN ESTA TERCER
 PREENTREGA
 
-*OBJETIVOS DE SEGUNDA ENTREGA
+*OBJETIVOS DE TERCER ENTREGA
 
 //OBJETIVO PRIMARIO//
 - AGREGAR UN RECIBO EN DOM.
 - CREAR EVENTOS PARA QUITAR LOS PROMP.
 - MEJORAR LA BASE DE USUARIOS.
-- AGREGAR BOTONES PARA INGRESAR CLIENTE, O PARA BUSCAR CLIENTE Y SUS DATOS, (BUSCAR POR NUMERO DE TELEFONO Y NOMBRE).
-- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE..
+- AGREGAR BOTONES PARA INGRESAR CLIENTE, O PARA BUSCAR UN NUMERO DE TELEFONO DE CLIENTE Y SI NO ENCUENTRA NO MOSTAR EL
+BOTON DE AGREGAR DATOS, (BUSCAR POR NUMERO DE TELEFONO Y NOMBRE).
+- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE.
 
 TUVE UN PROBLEMA CON MI PC, ASI QUE RECUPERE DE GIT EL ULTIMO, HICE UN PUSH CON UNA PC NUEVA, LUEGO LOGRE TENER 
 CONFLICTOS EN GIT POR TENER 2 CARGAS PUSHEADAS EN EL MAIN DISTINTAS, ASI QUE RECUPERE ESTE ARCHIVO A LA ÚLTIMA VERSIÓN
@@ -171,6 +172,7 @@ botonPupusas.onclick = () => {
     pupas[4] * 0.85,
   ];
 
+  //USANDO FUNSION SUPERIOR PARA EVALUAR LA SUMA DEL ARRAY.
   let TotalPrecio = PrecioPupas.reduce((a, b) => a + b, 0);
 
   //ALMACEN DE DATOS PARA NO PERDER EL PEDIDO
@@ -219,13 +221,12 @@ botonPupusas.onclick = () => {
     pupas[1] == 0 &&
     pupas[2] == 0 &&
     pupas[3] == 0 &&
-    pupas[4] == 0 &&
-    direccionCliente.value == 0
+    pupas[4] == 0 
   ) {
     //DEJARE SOLO ESTE ALERT PARA PODER ADVERTIR UNA VEZ QUE NO SE INGRESARON DATOS
     localStorage.clear();
     alert(
-      "Porfavor, ingresa cuantas pupas y luego tu direccion antes de pulsar el boton\n para enviar tu orden"
+      "Porfavor, ingresa cuantas pupas y luego tu direccion antes de pulsar el boton\npara enviar tu orden"
     );
     location.reload();
   }
@@ -261,7 +262,7 @@ botonPupusas.onclick = () => {
     let generarPedido = document.createElement("button");
     generarPedido.setAttribute("class", "botonDireccion");
     generarPedido.setAttribute("id", "botonDireccion");
-    generarPedido.textContent = "Generar Recibo";
+    generarPedido.textContent = "Generar Pedido y Recibo";
     divCliente.appendChild(generarPedido);
 
     //INGRESAR LOS DATOS DEL CLIENTE
@@ -277,7 +278,9 @@ botonPupusas.onclick = () => {
       const recibofinal = document.createElement("div");
       recibofinal.setAttribute("id", "reciboFinal");
       const nombreRecibo = document.createElement("h3");
-      nombreRecibo.innerText = "DETALLES DE TU ORDEN";
+      nombreRecibo.innerText = `TU PEDIDO YA ESTA EN LA PLANCHA
+
+      DETALLES DE TU ORDEN`;
       const horaPedido = document.createElement("p");
       horaPedido.innerText = `Hora del pedido:\n${Date()}`;
       const nombreCliente = document.createElement("p");
@@ -308,7 +311,7 @@ botonPupusas.onclick = () => {
       let regresar = document.createElement("button");
       regresar.setAttribute("class", "botonDireccion");
       regresar.setAttribute("id", "botonDireccion");
-      regresar.textContent = "Revisar Pedido";
+      regresar.textContent = "VOLVER ATRAS Y ORDENAR DE NUEVO";
       regresar.onclick = () => {
         location.reload();
       };
@@ -322,12 +325,16 @@ botonPupusas.onclick = () => {
       divRecibos.appendChild(recibofinal);
       divContenedor.appendChild(divRecibos);
 
-      divImagen = document.createElement("div");
-      divImagen.setAttribute("class", "imgPupusas");
-    };
+      let divImagenPlancha = document.getElementById("imgPupusas");
+      let imagenPupusas = document.createElement('img');
+        imagenPupusas.src = ".././images/pupusa2.jpeg";
 
-    //divContenedor.appendChild(generarPedido);
-    //divDireccion.appendChild(divContenedor);
-    //direccionEnvio.appendChild(divDireccion);
+        //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
+        //y funciono :).
+        imagenPupusas.setAttribute("style","width: 60dvw; height: 50dvw; border-radius: 15px;")
+
+      divImagenPlancha.appendChild(imagenPupusas);
+
+    };
   }
 };
