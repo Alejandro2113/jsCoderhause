@@ -221,7 +221,7 @@ botonPupusas.onclick = () => {
     pupas[1] == 0 &&
     pupas[2] == 0 &&
     pupas[3] == 0 &&
-    pupas[4] == 0 
+    pupas[4] == 0
   ) {
     //DEJARE SOLO ESTE ALERT PARA PODER ADVERTIR UNA VEZ QUE NO SE INGRESARON DATOS
     localStorage.clear();
@@ -326,15 +326,17 @@ botonPupusas.onclick = () => {
       divContenedor.appendChild(divRecibos);
 
       let divImagenPlancha = document.getElementById("imgPupusas");
-      let imagenPupusas = document.createElement('img');
-        imagenPupusas.src = ".././images/pupusa2.jpeg";
+      let imagenPupusas = document.createElement("img");
+      imagenPupusas.src = ".././images/pupusa2.jpeg";
 
-        //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
-        //y funciono :).
-        imagenPupusas.setAttribute("style","width: 60dvw; height: 50dvw; border-radius: 15px;")
+      //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
+      //y funciono :).
+      imagenPupusas.setAttribute(
+        "style",
+        "width: 60dvw; height: 50dvw; border-radius: 15px;"
+      );
 
       divImagenPlancha.appendChild(imagenPupusas);
-
     };
   }
 };
