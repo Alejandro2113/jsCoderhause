@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Alejandro2113/jsCoderhause/issues"
   },
-  "homepage": "https://github.com/Alejandro2113/jsCoderhause#readme"
+  "homepage": "https://github.com/Alejandro2113/jsCoderhause#readme",
+  "dependencies": {
+    "sweetalert2": "^11.6.13"
+  }
 }

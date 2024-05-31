@@ -1,26 +1,21 @@
-/*Orden de pupas (Me costo encontrat otro ejemplo) ver 2.3.0.
+/*Orden de pupas ver 2.4.0
 Alumno= Moises Alejandro Gonzalez Moran.
-Comision CODERHAUSE javascrit (No "JAVA" sino me funean) #54005.
-Tutoría a cargo de Marcelo Furlong.
+Comision CODERHAUSE javascrit #54005.
+Tutoría a cargo de MARCELO FURLONG.
+Ponente: LUCAS GABRIEL RUIZ
 */
 
 /* DEJO CLAROS MIS OBJETIVOS PARA TRAZAR UNA META Y DEFINIR PUNTOS A TOCAR EN ESTA TERCER
 PREENTREGA
 
-*OBJETIVOS DE TERCER ENTREGA
+-----OBJETIVOS------
 
-//OBJETIVO PRIMARIO//
-- AGREGAR UN RECIBO EN DOM.
-- CREAR EVENTOS PARA QUITAR LOS PROMP.
-- MEJORAR LA BASE DE USUARIOS.
-- AGREGAR BOTONES PARA INGRESAR CLIENTE, O PARA BUSCAR UN NUMERO DE TELEFONO DE CLIENTE Y SI NO ENCUENTRA NO MOSTAR EL
-BOTON DE AGREGAR DATOS, (BUSCAR POR NUMERO DE TELEFONO Y NOMBRE).
-- ALMACENAR EN LOCAL STORAGE LA ORDEN Y EL CLINETE.
+-AGREGAR LIBRERIAS SWEET ALERT Y TOSTIFY.
+-USO DE ASINCRONIA Y PROMESAS CON UNA API USANDO UN FETCH || USAR UN DATA.JSON PARA EMULAR UN API
+-BORRAR TODOS LOS CONSOLE.LOG !IMPORTANTE
+-ELIMINAR TODOS LOS ALERT Y MODIFICARLOS A SWEET ALERT, ELIMINAR LOS PROMPT
+-REVISAR EL ESTILO Y PULIR EL CSS
 
-TUVE UN PROBLEMA CON MI PC, ASI QUE RECUPERE DE GIT EL ULTIMO, HICE UN PUSH CON UNA PC NUEVA, LUEGO LOGRE TENER 
-CONFLICTOS EN GIT POR TENER 2 CARGAS PUSHEADAS EN EL MAIN DISTINTAS, ASI QUE RECUPERE ESTE ARCHIVO A LA ÚLTIMA VERSIÓN
-NUEVA PARA CONTINUAR EL TRABAJO, DEJO COMO EVIDENCIA ESTO PORQUE FUE EMOCIONANTE PODERLO RECUPERAR CON UN POCO DE 
-ESFUERZO (5MIN) Y QUIERO QUE QUEDE A POSTERIDAD.
 */
 
 //BASE DE CLIENTES
@@ -205,17 +200,6 @@ botonPupusas.onclick = () => {
     alergiaCliente.value
   );
 
-  if (clienteFinal.value == 0) {
-    alert(
-      "Porfavor, ingresa cuantas pupas y luego tu nombre completo y direccion antes de pulsar el boton\n para enviar tu orden"
-    );
-    location.reload();
-  }
-
-  if (direccionCliente.value == 0) {
-    direccionCliente.value = "Recojer en tienda";
-  }
-
   if (
     pupas[0] == 0 &&
     pupas[1] == 0 &&
@@ -225,10 +209,19 @@ botonPupusas.onclick = () => {
   ) {
     //DEJARE SOLO ESTE ALERT PARA PODER ADVERTIR UNA VEZ QUE NO SE INGRESARON DATOS
     localStorage.clear();
-    alert(
-      "Porfavor, ingresa cuantas pupas y luego tu direccion antes de pulsar el boton\npara enviar tu orden"
-    );
-    location.reload();
+    // alert(
+    //   "Porfavor, ingresa cuantas pupas y luego tu direccion antes de pulsar el boton\npara enviar tu orden"
+    // );
+    Swal.fire({
+      icon: "error",
+      title: "No ingresaste ningun valor \n Necesitamos tu orden y detalles de envio.",
+      text: "Porfavor, ingresa cuantas pupas y luego tu direccion antes de pulsar el boton\npara enviar tu orden",
+      timer:6000,
+      //asi de lento porque muchos leen super lento pero se que es excesivo.
+    }).then(() => {
+      location.reload();
+    });
+    //location.reload();
   }
   botonPupusas.remove();
 
@@ -272,71 +265,81 @@ botonPupusas.onclick = () => {
       divCliente.removeChild(generarPedido);
       divContenedor.innerHTML = "";
 
-      const divRecibos = document.createElement("div");
-      divRecibos.setAttribute("id", "reciboFinal");
-      divRecibos.setAttribute("class", "recibo");
-      const recibofinal = document.createElement("div");
-      recibofinal.setAttribute("id", "reciboFinal");
-      const nombreRecibo = document.createElement("h3");
-      nombreRecibo.innerText = `TU PEDIDO YA ESTA EN LA PLANCHA
 
-      DETALLES DE TU ORDEN`;
-      const horaPedido = document.createElement("p");
-      horaPedido.innerText = `Hora del pedido:\n${Date()}`;
-      const nombreCliente = document.createElement("p");
-      nombreCliente.innerText = `Orde a nombre de:\n${clienteFinal.value}`;
-      const direccionRecibo = document.createElement("p");
-      direccionRecibo.innerText = `Tu direccion es:\n${direccionCliente.value}`;
-      const resumenPupusas = document.createElement("p");
-      resumenPupusas.innerText =
-        "El resumen de tu pedido es:\n\n" +
-        `${pupas[0]} - Pupusas Revueltas\t - (0.90)\t - $ ${(
-          pupas[0] * 0.9
-        ).toFixed(2)}\n` +
-        `${pupas[1]} - Pupusas La queso\t - (0.95)\t - $ ${(
-          pupas[1] * 0.95
-        ).toFixed(2)}\n` +
-        `${pupas[2]} - Pupusas Campesina\t - (1.15)\t - $ ${(
-          pupas[2] * 1.15
-        ).toFixed(2)}\n` +
-        `${pupas[3]} - Pupusas La Caperusita\t - (1.20)\t - $ ${(
-          pupas[3] * 1.2
-        ).toFixed(2)}\n` +
-        `${pupas[4]} - Pupusas La vegetariana\t - (0.85)\t - $ ${(
-          pupas[4] * 0.85
-        ).toFixed(2)}\n 
-          En total son ${TotalPupas} Pupusas
-          Cantidad a pagar = $ ${TotalPrecio.toFixed(2)}`;
+      Swal.fire({
+        title: "Tu pedido esta listo",
+        text: "Tu orden ya esta en la plancha!!!",
+        icon: "success",
+        timer:5000,
+      }).then(()=>{
 
-      let regresar = document.createElement("button");
-      regresar.setAttribute("class", "botonDireccion");
-      regresar.setAttribute("id", "botonDireccion");
-      regresar.textContent = "VOLVER ATRAS Y ORDENAR DE NUEVO";
-      regresar.onclick = () => {
-        location.reload();
-      };
+        const divRecibos = document.createElement("div");
+        divRecibos.setAttribute("id", "reciboFinal");
+        divRecibos.setAttribute("class", "recibo");
+        const recibofinal = document.createElement("div");
+        recibofinal.setAttribute("id", "reciboFinal");
+        const nombreRecibo = document.createElement("h3");
+        nombreRecibo.innerText = `TU PEDIDO YA ESTA EN LA PLANCHA
+  
+        DETALLES DE TU ORDEN`;
+        const horaPedido = document.createElement("p");
+        horaPedido.innerText = `Hora del pedido:\n${Date()}`;
+        const nombreCliente = document.createElement("p");
+        nombreCliente.innerText = `Orde a nombre de:\n${clienteFinal.value}`;
+        const direccionRecibo = document.createElement("p");
+        direccionRecibo.innerText = `Tu direccion es:\n${direccionCliente.value}`;
+        const resumenPupusas = document.createElement("p");
+        resumenPupusas.innerText =
+          "El resumen de tu pedido es:\n\n" +
+          `${pupas[0]} - Pupusas Revueltas\t - (0.90)\t - $ ${(
+            pupas[0] * 0.9
+          ).toFixed(2)}\n` +
+          `${pupas[1]} - Pupusas La queso\t - (0.95)\t - $ ${(
+            pupas[1] * 0.95
+          ).toFixed(2)}\n` +
+          `${pupas[2]} - Pupusas Campesina\t - (1.15)\t - $ ${(
+            pupas[2] * 1.15
+          ).toFixed(2)}\n` +
+          `${pupas[3]} - Pupusas La Caperusita\t - (1.20)\t - $ ${(
+            pupas[3] * 1.2
+          ).toFixed(2)}\n` +
+          `${pupas[4]} - Pupusas La vegetariana\t - (0.85)\t - $ ${(
+            pupas[4] * 0.85
+          ).toFixed(2)}\n 
+            En total son ${TotalPupas} Pupusas
+            Cantidad a pagar = $ ${TotalPrecio.toFixed(2)}`;
+  
+        let regresar = document.createElement("button");
+        regresar.setAttribute("class", "botonDireccion");
+        regresar.setAttribute("id", "botonDireccion");
+        regresar.textContent = "VOLVER ATRAS Y ORDENAR DE NUEVO";
+        regresar.onclick = () => {
+          location.reload();
+        };
+  
+        recibofinal.appendChild(nombreRecibo);
+        recibofinal.appendChild(horaPedido);
+        recibofinal.appendChild(nombreCliente);
+        recibofinal.appendChild(direccionRecibo);
+        recibofinal.appendChild(resumenPupusas);
+        recibofinal.appendChild(regresar);
+        divRecibos.appendChild(recibofinal);
+        divContenedor.appendChild(divRecibos);
+  
+        let divImagenPlancha = document.getElementById("imgPupusas");
+        let imagenPupusas = document.createElement("img");
+        imagenPupusas.src = ".././images/pupusa2.jpeg";
+  
+        //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
+        //y funciono :).
+        imagenPupusas.setAttribute(
+          "style",
+          "width: 60dvw; height: 50dvw; border-radius: 15px;"
+        );
+  
+        divImagenPlancha.appendChild(imagenPupusas);
+      });
 
-      recibofinal.appendChild(nombreRecibo);
-      recibofinal.appendChild(horaPedido);
-      recibofinal.appendChild(nombreCliente);
-      recibofinal.appendChild(direccionRecibo);
-      recibofinal.appendChild(resumenPupusas);
-      recibofinal.appendChild(regresar);
-      divRecibos.appendChild(recibofinal);
-      divContenedor.appendChild(divRecibos);
-
-      let divImagenPlancha = document.getElementById("imgPupusas");
-      let imagenPupusas = document.createElement("img");
-      imagenPupusas.src = ".././images/pupusa2.jpeg";
-
-      //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
-      //y funciono :).
-      imagenPupusas.setAttribute(
-        "style",
-        "width: 60dvw; height: 50dvw; border-radius: 15px;"
-      );
-
-      divImagenPlancha.appendChild(imagenPupusas);
     };
   }
 };
