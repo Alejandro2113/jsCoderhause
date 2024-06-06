@@ -245,10 +245,12 @@ botonPupusas.onclick = () => {
     }
     botonAlmacenarCliente.onclick = () => {
       //PUSHEAR LOS DAROS A LA BASE DE DATOS DEL CLIENTES Y ALMACENAR
+      //Agregar toastify
       baseClientes.push(clienteNuevo);
       localStorage.setItem("baseClientes", JSON.stringify(baseClientes));
       botonAlmacenarCliente.remove();
       console.log(baseClientes);
+
     };
     divCliente.appendChild(botonAlmacenarCliente);
 
@@ -270,7 +272,7 @@ botonPupusas.onclick = () => {
         title: "Tu pedido esta listo",
         text: "Tu orden ya esta en la plancha!!!",
         icon: "success",
-        timer:5000,
+        timer:2000,
       }).then(()=>{
 
         const divRecibos = document.createElement("div");
@@ -329,15 +331,19 @@ botonPupusas.onclick = () => {
         let divImagenPlancha = document.getElementById("imgPupusas");
         let imagenPupusas = document.createElement("img");
         imagenPupusas.src = ".././images/pupusa2.jpeg";
-  
-        //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
-        //y funciono :).
-        imagenPupusas.setAttribute(
-          "style",
-          "width: 60dvw; height: 50dvw; border-radius: 15px;"
-        );
-  
-        divImagenPlancha.appendChild(imagenPupusas);
+        
+        setTimeout(()=> {
+          
+          //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
+          //y funciono :).
+          imagenPupusas.setAttribute(
+            "style",
+            "width: 60dvw; height: 50dvw; border-radius: 15px;"
+          );
+    
+          divImagenPlancha.appendChild(imagenPupusas);
+
+        },1500);
       });
 
     };
