@@ -216,7 +216,8 @@ botonPupusas.onclick = () => {
       icon: "error",
       title: "No ingresaste ningun valor \n Necesitamos tu orden y detalles de envio.",
       text: "Porfavor, ingresa cuantas pupas y luego tu direccion antes de pulsar el boton\npara enviar tu orden",
-      timer:6000,
+      timer:4000,
+      showConfirmButton: false,
       //asi de lento porque muchos leen super lento pero se que es excesivo.
     }).then(() => {
       location.reload();
@@ -245,7 +246,17 @@ botonPupusas.onclick = () => {
     }
     botonAlmacenarCliente.onclick = () => {
       //PUSHEAR LOS DAROS A LA BASE DE DATOS DEL CLIENTES Y ALMACENAR
-      //Agregar toastify
+      //Agregae toastify
+
+      Toastify({
+        text: "Te agregaste a la base de Clientes\nGracias por tu preferencia",
+        duration: 2800,
+        className: "info",
+        style: {
+          background: "green",
+        }
+      }).showToast();
+
       baseClientes.push(clienteNuevo);
       localStorage.setItem("baseClientes", JSON.stringify(baseClientes));
       botonAlmacenarCliente.remove();
