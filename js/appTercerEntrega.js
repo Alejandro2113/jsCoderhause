@@ -214,9 +214,10 @@ botonPupusas.onclick = () => {
     // );
     Swal.fire({
       icon: "error",
-      title: "No ingresaste ningun valor \n Necesitamos tu orden y detalles de envio.",
+      title:
+        "No ingresaste ningun valor \n Necesitamos tu orden y detalles de envio.",
       text: "Porfavor, ingresa cuantas pupas y luego tu direccion antes de pulsar el boton\npara enviar tu orden",
-      timer:4000,
+      timer: 4000,
       showConfirmButton: false,
       //asi de lento porque muchos leen super lento pero se que es excesivo.
     }).then(() => {
@@ -254,14 +255,13 @@ botonPupusas.onclick = () => {
         className: "info",
         style: {
           background: "green",
-        }
+        },
       }).showToast();
 
       baseClientes.push(clienteNuevo);
       localStorage.setItem("baseClientes", JSON.stringify(baseClientes));
       botonAlmacenarCliente.remove();
       console.log(baseClientes);
-
     };
     divCliente.appendChild(botonAlmacenarCliente);
 
@@ -278,14 +278,12 @@ botonPupusas.onclick = () => {
       divCliente.removeChild(generarPedido);
       divContenedor.innerHTML = "";
 
-
       Swal.fire({
         title: "Tu pedido esta listo",
         text: "Tu orden ya esta en la plancha!!!",
         icon: "success",
-        timer:2000,
-      }).then(()=>{
-
+        timer: 2000,
+      }).then(() => {
         const divRecibos = document.createElement("div");
         divRecibos.setAttribute("id", "reciboFinal");
         divRecibos.setAttribute("class", "recibo");
@@ -321,7 +319,7 @@ botonPupusas.onclick = () => {
           ).toFixed(2)}\n 
             En total son ${TotalPupas} Pupusas
             Cantidad a pagar = $ ${TotalPrecio.toFixed(2)}`;
-  
+
         let regresar = document.createElement("button");
         regresar.setAttribute("class", "botonDireccion");
         regresar.setAttribute("id", "botonDireccion");
@@ -329,7 +327,7 @@ botonPupusas.onclick = () => {
         regresar.onclick = () => {
           location.reload();
         };
-  
+
         recibofinal.appendChild(nombreRecibo);
         recibofinal.appendChild(horaPedido);
         recibofinal.appendChild(nombreCliente);
@@ -338,25 +336,22 @@ botonPupusas.onclick = () => {
         recibofinal.appendChild(regresar);
         divRecibos.appendChild(recibofinal);
         divContenedor.appendChild(divRecibos);
-  
+
         let divImagenPlancha = document.getElementById("imgPupusas");
         let imagenPupusas = document.createElement("img");
         imagenPupusas.src = ".././images/pupusa2.jpeg";
-        
-        setTimeout(()=> {
-          
+
+        setTimeout(() => {
           //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
           //y funciono :).
           imagenPupusas.setAttribute(
             "style",
             "width: 60dvw; height: 50dvw; border-radius: 15px;"
           );
-    
+
           divImagenPlancha.appendChild(imagenPupusas);
-
-        },1500);
+        }, 1500);
       });
-
     };
   }
 };
