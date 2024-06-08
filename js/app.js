@@ -133,9 +133,9 @@ botonPupusas.onclick = () => {
   clienteNuevo = new MiCliente(
     baseClientes.length + 1,
     telefonoCleinte.value,
-    clienteFinal.value,
+    clienteFinal.value.toUpperCase(),
     edadCliente.value,
-    direccionCliente.value,
+    direccionCliente.value.toUpperCase(),
     alergiaCliente.value
   );
 
@@ -241,9 +241,9 @@ botonPupusas.onclick = () => {
         const horaPedido = document.createElement("p");
         horaPedido.innerText = `Hora del pedido:\n${Date()}`;
         const nombreCliente = document.createElement("p");
-        nombreCliente.innerText = `Orde a nombre de:\n${clienteFinal.value}`;
+        nombreCliente.innerText = `Orde a nombre de:\n${clienteFinal.value.toUpperCase()}`;
         const direccionRecibo = document.createElement("p");
-        direccionRecibo.innerText = `Tu direccion es:\n${direccionCliente.value}`;
+        direccionRecibo.innerText = `Tu direccion es:\n${direccionCliente.value.toUpperCase()}`;
         const resumenPupusas = document.createElement("p");
         resumenPupusas.innerText =
           "El resumen de tu pedido es:\n\n" +
