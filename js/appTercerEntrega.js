@@ -31,22 +31,17 @@ class baseCliente {
   }
 }
 
-console.log(localStorage.length);
-
 if (localStorage.length < 4) {
   fetch("../js/clientes.json")
     .then((response) => response.json())
     .then((data) => (baseCliente = data));
 
   setTimeout(() => {
-    //localStorage.setItem("baseClientes", JSON.stringify(baseCliente));
-    //let baseCliente = JSON.parse(localStorage.getItem("baseClientes"));
-    console.log(baseCliente);
+    //console.log(baseCliente);
     baseClientes = baseCliente;
   }, 500);
 } else if (localStorage.length >= 4) {
   let baseCliente = JSON.parse(localStorage.getItem("baseClientes"));
-  console.log(baseCliente);
   baseClientes = baseCliente;
 }
 
@@ -73,7 +68,6 @@ if (localStorage.length >= 2) {
   let vegetariana = document.getElementById("vege");
 
   let pupas = JSON.parse(localStorage.getItem("pupas"));
-  console.log(pupas);
   revueltas.value = pupas[0];
   queso.value = pupas[1];
   campesina.value = pupas[2];
@@ -130,21 +124,11 @@ botonPupusas.onclick = () => {
   localStorage.setItem("TotalPupas", TotalPupas);
   localStorage.setItem("TotalPrecio", TotalPrecio.toFixed(2));
 
-  console.log(pupas);
-  console.log("TOTAL PUPUSAS = " + TotalPupas);
-  console.log("$ " + TotalPrecio.toFixed(2));
-
   let clienteFinal = document.getElementById("nombre");
   let edadCliente = document.getElementById("age");
   let telefonoCleinte = document.getElementById("telefono");
   let direccionCliente = document.getElementById("direccion");
   let alergiaCliente = document.getElementById("alergia");
-
-  console.log("Cliente= " + clienteFinal.value);
-  console.log("Edad= " + edadCliente.value);
-  console.log("Telefono= " + telefonoCleinte.value);
-  console.log("Direccion= " + direccionCliente.value);
-  console.log("Alergias= " + alergiaCliente.value);
 
   clienteNuevo = new MiCliente(
     baseClientes.length + 1,
@@ -157,6 +141,7 @@ botonPupusas.onclick = () => {
 
   if ((clienteFinal.value = !0 && direccionCliente.value == 0)) {
     direccionCliente.value = "Recojer en tienda";
+    clienteFinal.value = "Retirar en tienda";
   }
 
   if (
@@ -223,7 +208,6 @@ botonPupusas.onclick = () => {
       baseClientes.push(clienteNuevo);
       localStorage.setItem("baseClientes", JSON.stringify(baseClientes));
       botonAlmacenarCliente.remove();
-      console.log(baseClientes);
     };
     divCliente.appendChild(botonAlmacenarCliente);
 
