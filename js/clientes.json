@@ -1,0 +1,50 @@
+[
+  {
+    "idCliente": 1,
+    "nombre": "EDUARDO GONZALEZ",
+    "telefono": 61616565,
+    "edad": 21,
+    "direccion": "avenida siempre viva 120",
+    "alergias": "pimienta"
+  },
+  {
+    "idCliente": 2,
+    "nombre": "jULIO MEDINA",
+    "telefono": 61616566,
+    "edad": 22,
+    "direccion": "avenida siempre viva 121",
+    "alergias": "loroco"
+  },
+  {
+    "idCliente": 3,
+    "nombre": "JOSUE GONZALEZ",
+    "telefono": 61616060,
+    "edad": 23,
+    "direccion": "avenida siempre viva 122",
+    "alergias": "colorantes"
+  },
+  {
+    "idCliente": 4,
+    "nombre": "HOMERO SIMPSON",
+    "telefono": 70707878,
+    "edad": 34,
+    "direccion": "avenida siempre viva 123",
+    "alergias": "pimienta"
+  },
+  {
+    "idCliente": 5,
+    "nombre": "GABRIELA GONZALEZ",
+    "telefono": 61616000,
+    "edad": 27,
+    "direccion": "avenida siempre viva 124",
+    "alergias": "chicharon"
+  },
+  {
+    "idCliente": 6,
+    "nombre": "ALE",
+    "telefono": 78707870,
+    "edad": 30,
+    "direccion": "avenida siempre viva 125",
+    "alergias": "colorante rojo"
+  }
+]

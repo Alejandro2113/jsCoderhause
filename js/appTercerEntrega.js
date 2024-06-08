@@ -34,67 +34,22 @@ class baseCliente {
 console.log(localStorage.length);
 
 if (localStorage.length < 4) {
-  let baseCliente = [
-    {
-      idCliente: 1,
-      nombre: "EDUARDO GONZALEZ",
-      telefono: 61616565,
-      edad: 21,
-      direccion: "avenida siempre viva 120",
-      alergias: "pimienta",
-    },
-    {
-      idCliente: 2,
-      nombre: "jULIO MEDINA",
-      telefono: 61616566,
-      edad: 22,
-      direccion: "avenida siempre viva 121",
-      alergias: "loroco",
-      alergias: "chile",
-    },
-    {
-      idCliente: 3,
-      nombre: "JOSUE GONZALEZ",
-      telefono: 61616060,
-      edad: 23,
-      direccion: "avenida siempre viva 122",
-      alergias: "colorantes",
-    },
-    {
-      idCliente: 4,
-      nombre: "HOMERO SIMPSON",
-      telefono: 70707878,
-      edad: 34,
-      direccion: "avenida siempre viva 123",
-      alergias: "pimienta",
-    },
-    {
-      idCliente: 5,
-      nombre: "GABRIELA GONZALEZ",
-      telefono: 61616000,
-      edad: 27,
-      direccion: "avenida siempre viva 124",
-      alergias: "chicharon",
-    },
-    {
-      idCliente: 6,
-      nombre: "ALE",
-      telefono: 78707870,
-      edad: 30,
-      direccion: "avenida siempre viva 125",
-      alergias: "colorante rojo",
-    },
-  ];
-  console.log(baseCliente);
+  fetch("../js/clientes.json")
+    .then((response) => response.json())
+    .then((data) => (baseCliente = data));
 
-  baseClientes = baseCliente;
+  setTimeout(() => {
+    //localStorage.setItem("baseClientes", JSON.stringify(baseCliente));
+    //let baseCliente = JSON.parse(localStorage.getItem("baseClientes"));
+    console.log(baseCliente);
+    baseClientes = baseCliente;
+  }, 500);
 } else if (localStorage.length >= 4) {
   let baseCliente = JSON.parse(localStorage.getItem("baseClientes"));
   console.log(baseCliente);
   baseClientes = baseCliente;
 }
 
-console.log(baseClientes);
 class MiCliente {
   constructor(idCliente, telefono, nombre, edad, direccion, alergias) {
     this.idCliente = idCliente;
@@ -200,17 +155,23 @@ botonPupusas.onclick = () => {
     alergiaCliente.value
   );
 
+  if ((clienteFinal.value = !0 && direccionCliente.value == 0)) {
+    direccionCliente.value = "Recojer en tienda";
+  }
+
   if (
-    pupas[0] == 0 &&
-    pupas[1] == 0 &&
-    pupas[2] == 0 &&
-    pupas[3] == 0 &&
-    pupas[4] == 0
+    (pupas[0] == 0 &&
+      pupas[1] == 0 &&
+      pupas[2] == 0 &&
+      pupas[3] == 0 &&
+      pupas[4] == 0) ||
+    clienteFinal.value == 0 ||
+    direccionCliente.value == 0
   ) {
     //DEJARE SOLO ESTE ALERT PARA PODER ADVERTIR UNA VEZ QUE NO SE INGRESARON DATOS
     localStorage.clear();
     // alert(
-    //   "Porfavor, ingresa cuantas pupas y luego tu direccion antes de pulsar el boton\npara enviar tu orden"
+    //   "Porfavor, ingresa cuantas pupas y luego tu Nombre O direccion antes de pulsar el boton\npara enviar tu orden"
     // );
     Swal.fire({
       icon: "error",
@@ -245,6 +206,7 @@ botonPupusas.onclick = () => {
       botonAlmacenarCliente.setAttribute("id", "botonDireccion");
       botonAlmacenarCliente.textContent = "Almacenar mis datos";
     }
+
     botonAlmacenarCliente.onclick = () => {
       //PUSHEAR LOS DAROS A LA BASE DE DATOS DEL CLIENTES Y ALMACENAR
       //Agregae toastify
@@ -254,7 +216,7 @@ botonPupusas.onclick = () => {
         duration: 2800,
         className: "info",
         style: {
-          background: "green",
+          background: "rgb(0, 139, 139)",
         },
       }).showToast();
 
@@ -271,8 +233,6 @@ botonPupusas.onclick = () => {
     generarPedido.textContent = "Generar Pedido y Recibo";
     divCliente.appendChild(generarPedido);
 
-    //INGRESAR LOS DATOS DEL CLIENTE
-
     generarPedido.onclick = () => {
       //LIMPIANDO DATOS
       divCliente.removeChild(generarPedido);
@@ -284,6 +244,7 @@ botonPupusas.onclick = () => {
         icon: "success",
         timer: 2000,
       }).then(() => {
+        //RECIBO
         const divRecibos = document.createElement("div");
         divRecibos.setAttribute("id", "reciboFinal");
         divRecibos.setAttribute("class", "recibo");
@@ -325,6 +286,14 @@ botonPupusas.onclick = () => {
         regresar.setAttribute("id", "botonDireccion");
         regresar.textContent = "VOLVER ATRAS Y ORDENAR DE NUEVO";
         regresar.onclick = () => {
+          //BORRANDO PEDIDO PARA COLOCAR UNO NUEVO
+          pupas[0] = 0;
+          pupas[1] = 0;
+          pupas[2] = 0;
+          pupas[3] = 0;
+          pupas[4] = 0;
+          localStorage.setItem("pupas", JSON.stringify(pupas));
+
           location.reload();
         };
 
@@ -341,6 +310,7 @@ botonPupusas.onclick = () => {
         let imagenPupusas = document.createElement("img");
         imagenPupusas.src = ".././images/pupusa2.jpeg";
 
+        //QIIERO QUE SE TARDE EN MOSTRAR LA IMAGEN DE LAS PUPUSAS AL FINAL
         setTimeout(() => {
           //No se si esto no es buena practica, pero lo quise hacer para saber si se puede y jugar un poco con el setAttibute
           //y funciono :).
