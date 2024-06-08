@@ -165,9 +165,11 @@ main .elm .cont2 .datosPedido table thead tr {
 }
 main .elm .cont2 .datosPedido th,
 main .elm .cont2 .datosPedido td {
-  border: 1px solid darkcyan;
+  border: 1px solid rgb(0, 139, 139);
   padding: 10px;
   text-align: left;
+  color: rgb(201, 201, 201);
+  font-size: 20px;
 }
 main .elm .cont2 .datosPedido th .cantidad,
 main .elm .cont2 .datosPedido td .cantidad {
@@ -182,6 +184,9 @@ main .elm .cont2 .envio .formNuevo {
   font-size: 20px;
   color: aquamarine;
   align-content: center;
+}
+main .elm .cont2 .envio .formNuevo label {
+  color: rgb(201, 201, 201);
 }
 main .elm .cont2 .recibo {
   width: 90%;
