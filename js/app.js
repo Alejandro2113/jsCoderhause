@@ -139,7 +139,7 @@ botonPupusas.onclick = () => {
     alergiaCliente.value
   );
 
-  if ((clienteFinal.value = !0 && direccionCliente.value == 0)) {
+  if (( direccionCliente.value == 0)) {
     direccionCliente.value = "Recojer en tienda";
     clienteFinal.value = "Retirar en tienda";
   }
