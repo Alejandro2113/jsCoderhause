@@ -35,14 +35,15 @@ if (localStorage.length < 4) {
   fetch("../js/clientes.json")
     .then((response) => response.json())
     .then((data) => (baseCliente = data));
-
   setTimeout(() => {
-    //console.log(baseCliente);
+    //let baseClientes = Object.assign({}, baseCliente);
     baseClientes = baseCliente;
+    //console.log("base1 =" + baseClientes);
   }, 500);
 } else if (localStorage.length >= 4) {
   let baseCliente = JSON.parse(localStorage.getItem("baseClientes"));
   baseClientes = baseCliente;
+  //console.log("base2 =" + baseClientes);
 }
 
 class MiCliente {
@@ -130,7 +131,7 @@ botonPupusas.onclick = () => {
   let direccionCliente = document.getElementById("direccion");
   let alergiaCliente = document.getElementById("alergia");
 
-  clienteNuevo = new MiCliente(
+  let clienteNuevo = new MiCliente(
     baseClientes.length + 1,
     telefonoCleinte.value,
     clienteFinal.value.toUpperCase(),
@@ -139,7 +140,7 @@ botonPupusas.onclick = () => {
     alergiaCliente.value
   );
 
-  if (( direccionCliente.value == 0)) {
+  if (direccionCliente.value == 0) {
     direccionCliente.value = "Recojer en tienda";
     clienteFinal.value = "Retirar en tienda";
   }
